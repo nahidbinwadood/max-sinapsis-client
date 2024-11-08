@@ -13,6 +13,11 @@
     url('./assets/fonts/HelveticaUltraLight.otf') format('truetype');
 }
 @font-face {
+  font-family: 'LightBold';
+  src: local('Helvetical'),
+    url('./assets/fonts/HelveticaMediumExtended.otf') format('truetype');
+}
+@font-face {
   font-family: 'Medium';
   src: local('Helvetical'),
     url('./assets/fonts/HelveticaNeueLTStd-LtEx.ttf') format('truetype');

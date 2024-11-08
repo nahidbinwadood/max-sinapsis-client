@@ -31,7 +31,7 @@ const Footer = () => {
   return (
     <footer className="bg-secondary py-16">
       {/* top part */}
-      <div className="flex flex-col items-center justify-center font-primaryRegular text-white text-xl">
+      <div className="flex flex-col text-center items-center justify-center font-primaryRegular text-white text-xl">
         <div>
           <div>
             <a className="underline" href="mailto:analaura@projectartwork.com">
@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-8">
-          <ul className="flex items-center justify-between gap-24 ">
+          <ul className="flex items-center justify-between gap-24 text-lg tracking-wider">
             {navLinks.map((link) => (
               <li key={link?.title}>
                 <Link to={link?.path}>{link?.title}</Link>
@@ -58,7 +58,7 @@ const Footer = () => {
         <div className="flex items-center justify-center">
           <span className='flex items-center gap-3 justify-center text-base'>
             <CaptionSvg />
-            2024.All rights reserved.
+            <span className='opacity-85'>2024.All rights reserved.</span>
           </span>
         </div>
       </div>

@@ -8,6 +8,7 @@ export default {
         primaryRegular: ['Regular'],
         primaryMedium: ['Medium'],
         primaryBold: ['Bold'],
+        primaryLightBold: ['LightBold'],
       },
       fontWeight: {
         ultralight: '250',
