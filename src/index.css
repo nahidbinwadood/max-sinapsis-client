@@ -27,5 +27,10 @@
   src: local('Helvetical'),
     url('./assets/fonts/HelveticaNeueLTStd-BdEx.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Test';
+  src: local('Helvetical'),
+    url('./assets/fonts/HelveticaNeueLTStd-ThEx.ttf') format('truetype');
+}
 
 

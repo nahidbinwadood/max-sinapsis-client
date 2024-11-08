@@ -3,7 +3,7 @@ import Title from '../components/Title';
 
 const Services = () => {
   return (
-    <section className='pb-20'>
+    <section className='pb-32'>
       <Title title={'services'} />
 
       {/* Contents */}

@@ -9,6 +9,7 @@ export default {
         primaryMedium: ['Medium'],
         primaryBold: ['Bold'],
         primaryLightBold: ['LightBold'],
+        primaryTest: ['Test'],
       },
       fontWeight: {
         ultralight: '250',
