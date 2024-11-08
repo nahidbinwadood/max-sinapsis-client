@@ -10,7 +10,7 @@
 @font-face {
   font-family: 'Regular';
   src: local('Helvetical'),
-    url('./assets/fonts/HelveticaNeueLTStd-UltLtEx.ttf') format('truetype');
+    url('./assets/fonts/HelveticaUltraLight.otf') format('truetype');
 }
 @font-face {
   font-family: 'Medium';
