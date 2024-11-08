@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Logo';
+  src: local('Graphite'),
+    url('./assets/fonts/Graphite-DEMO-BF65b429d37a96e.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Regular';
+  src: local('Helvetical'),
+    url('./assets/fonts/HelveticaNeueLTStd-UltLtEx.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Medium';
+  src: local('Helvetical'),
+    url('./assets/fonts/HelveticaNeueLTStd-LtEx.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Bold';
+  src: local('Helvetical'),
+    url('./assets/fonts/HelveticaNeueLTStd-BdEx.ttf') format('truetype');
+}
+
+
