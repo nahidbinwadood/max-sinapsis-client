@@ -3,6 +3,7 @@ import MainLayout from '../Layout/MainLayout';
 import Homepage from '../Pages/Homepage';
 import Services from '../Pages/Services';
 import Projects from '../Pages/Projects';
+import Portfolio from '../Pages/Portfolio';
 
 const router = createBrowserRouter(
   [
@@ -24,7 +25,7 @@ const router = createBrowserRouter(
         },
         {
           path: '/portfolio',
-          element: <Homepage />,
+          element: <Portfolio />,
         },
         {
           path: '/creativity',

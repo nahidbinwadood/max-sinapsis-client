@@ -309,3 +309,45 @@ export function DotSvg() {
     </svg>
   );
 }
+
+export function PrevArrowSvg() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+    >
+      <path
+        d="M20.0649 26.5599L11.3716 17.8666C10.3449 16.8399 10.3449 15.1599 11.3716 14.1333L20.0649 5.43994"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function NextArrowSvg() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+    >
+      <path
+        d="M11.9351 26.5599L20.6284 17.8666C21.6551 16.8399 21.6551 15.1599 20.6284 14.1333L11.9351 5.43994"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
