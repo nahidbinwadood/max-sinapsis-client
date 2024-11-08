@@ -94,7 +94,7 @@ export function SpainSvg() {
       x="0"
       y="0"
       viewBox="0 0 512.001 512.001"
-      style={{enableBackground:"new 0 0 512 512"}}
+      style={{ enableBackground: 'new 0 0 512 512' }}
       xmlSpace="preserve"
     >
       <g>
@@ -267,6 +267,32 @@ export function SpainSvg() {
           data-original="#c8414b"
         ></path>
       </g>
+    </svg>
+  );
+}
+export function CaptionSvg() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="15"
+      viewBox="0 0 14 15"
+      fill="none"
+    >
+      <path
+        d="M6.9974 13.3333C3.7774 13.3333 1.16406 10.72 1.16406 7.49996C1.16406 4.27996 3.7774 1.66663 6.9974 1.66663C10.2174 1.66663 12.8307 4.27996 12.8307 7.49996C12.8307 10.72 10.2174 13.3333 6.9974 13.3333Z"
+        stroke="white"
+        strokeWidth="0.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.67803 9.24996C8.26386 9.61163 7.72719 9.83329 7.13802 9.83329C5.84885 9.83329 4.80469 8.78913 4.80469 7.49996C4.80469 6.21079 5.84885 5.16663 7.13802 5.16663C7.72719 5.16663 8.26386 5.38829 8.67803 5.74996"
+        stroke="white"
+        strokeWidth="0.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
