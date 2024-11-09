@@ -38,7 +38,7 @@ const Creativity = () => {
     },
   ];
   return (
-    <section className='pb-20'>
+    <section className='pb-32'>
       <Title title="creativity" />
       {/* Content goes here */}
 

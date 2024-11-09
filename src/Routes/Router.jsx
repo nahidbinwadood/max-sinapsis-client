@@ -5,6 +5,7 @@ import Services from '../Pages/Services';
 import Projects from '../Pages/Projects';
 import Portfolio from '../Pages/Portfolio';
 import Creativity from '../Pages/Creativity';
+import Contact from '../Pages/Contact';
 
 const router = createBrowserRouter(
   [
@@ -34,7 +35,7 @@ const router = createBrowserRouter(
         },
         {
           path: '/contact',
-          element: <Homepage />,
+          element: <Contact />,
         },
       ],
     },
