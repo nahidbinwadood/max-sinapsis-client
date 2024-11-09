@@ -26,17 +26,17 @@ const Services = () => {
           </div>
         </div>
 
-        <div className="mt-20">
+        <div className="mt-16">
           {/* title */}
           <div>
             <SectionTitle title={'Step by Step'} />
             <div>
-              <p className="font-primaryMedium text-xl text-[#333] ml-6 mt-1">
+              <p className="font-primaryMedium tracking-wider text-[#333] ml-6 mt-1">
                 Our work process can be outlined as follows:
               </p>
             </div>
           </div>
-          <div className="mt-6 ml-6">
+          <div className="mt-5 ml-6">
             <div className="text-[#333] font-primaryMedium tracking-wider space-y-4">
               <p>
                 <span className="font-primaryLightBold text-secondary">
@@ -96,17 +96,17 @@ const Services = () => {
           {/* title */}
           <SectionTitle title={'Step by Step'} />
 
-          <div className="mt-8 space-y-4">
+          <div className="mt-5 space-y-4 ml-6">
             <p className="text-[#333] tracking-wider font-primaryMedium">
               All artwork chosen by client is exclusive, that is to say, it
               becomes unique for the project and worked in limited editions
               only.
             </p>
-            <p className="text-[#333] tracking-wider font-primaryMedium text-lg">
+            <p className="text-[#333] tracking-wider font-primaryMedium">
               Artwork delivered includes a quality guarantee for a period
               starting on delivery date.
             </p>
-            <p className="text-[#333] tracking-wider font-primaryMedium text-lg">
+            <p className="text-[#333] tracking-wider font-primaryMedium">
               Artwork delivered includes a quality guarantee for a period
               starting on delivery date.
             </p>

@@ -9,20 +9,21 @@ const NavLinks = ({ navLinks }) => {
       <ul className="flex items-center w-full gap-8 ">
         {navLinks?.map((link) => (
           <li key={link?.path}>
-            <NavLink
-              to={link?.path}
-              className=''
-            >
+            <NavLink to={link?.path} className="">
               {/* title */}
               {currentPath == link.path ? (
-                <span className="font-bold inline-block font-primaryBold text-xl px-6 transition duration-200 bg-primary pt-[5px] pb-2.5 border rounded-md ">+ {link?.title}</span>
+                <span className="font-bold inline-block font-primaryBold text-lg transition duration-200 bg-primary px-6 py-2 border rounded-md ">
+                  + {link?.title.toUpperCase()}
+                </span>
               ) : (
                 <span className="text-secondary font-primaryBold text-xl uppercase px-6 transition duration-200">
                   {link?.title === 'Portfolio'
                     ? link?.title.slice(0, 4)
                     : link?.title.slice(0, 3)}
                   <span className="font-primaryRegular">
-                    {link?.title.slice(3)}
+                    {link?.title === 'Portfolio'
+                      ? link?.title.slice(4)
+                      : link?.title.slice(3)}
                   </span>
                 </span>
               )}
