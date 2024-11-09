@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import logo from '../assets/images/logo.png';
 import {
   DownArrowSvg,
   HomeIconSvg,
@@ -6,6 +7,7 @@ import {
   UnitedStatesSvg,
 } from '../components/SvgContainer';
 import NavLinks from '../components/NavLinks';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [language, setLanguage] = useState('EN');
@@ -69,11 +71,12 @@ const Navbar = () => {
         <div className="container mx-auto flex items-center justify-between py-7">
           {/* logo */}
           <div>
-            <div>
-              <h1 className="font-logoFont text-secondary text-5xl">
+            <Link to='/' >
+              {/* <h1 className="font-logoFont text-secondary text-5xl">
                 project artwork
-              </h1>
-            </div>
+              </h1> */}
+              <img className='w-full max-w-[400px] h-full object-cover' src={logo} alt="" />
+            </Link>
           </div>
           <div className="flex items-center gap-6 text-secondary ">
             <h2 className="text-3xl font-primaryRegular">
@@ -109,7 +112,7 @@ const Navbar = () => {
                           name="language"
                           id={lang?.name}
                           className="peer hidden"
-                          onChange={()=>{}}
+                          onChange={() => {}}
                           checked={language == lang?.code}
                         />
                         <label
