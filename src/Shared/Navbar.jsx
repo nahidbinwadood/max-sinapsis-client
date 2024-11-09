@@ -71,11 +71,12 @@ const Navbar = () => {
         <div className="container mx-auto flex items-center justify-between py-7">
           {/* logo */}
           <div>
-            <Link to='/' >
-              {/* <h1 className="font-logoFont text-secondary text-5xl">
-                project artwork
-              </h1> */}
-              <img className='w-full max-w-[400px] h-full object-cover' src={logo} alt="" />
+            <Link to="/">
+              <img
+                className="w-full max-w-[400px] h-full object-cover"
+                src={logo}
+                alt=""
+              />
             </Link>
           </div>
           <div className="flex items-center gap-6 text-secondary ">
