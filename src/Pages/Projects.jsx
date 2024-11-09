@@ -14,8 +14,8 @@ const Projects = () => {
       description: '2016 remodel. Collage, metal.',
     },
     {
-      title: 'Puntarena - Buenaventura, Panamá',
-      //   location: 'Honduras',
+      title: 'Puntarena',
+      location: 'Buenaventura, Panamá',
       description: 'Beach condos. Photography.',
     },
     {

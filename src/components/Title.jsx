@@ -2,7 +2,7 @@
 const Title = ({ title }) => {
   return (
     <div className="mt-10">
-      <h1 className="text-2xl font-primaryBold">
+      <h1 className="text-2xl font-primaryBold lowercase">
         <span>+</span> {title}
       </h1>
     </div>

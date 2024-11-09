@@ -32,5 +32,7 @@
   src: local('Helvetical'),
     url('./assets/fonts/HelveticaNeueLTStd-ThEx.ttf') format('truetype');
 }
-
+.swiper-slide{
+  width:100% !important;
+}
 

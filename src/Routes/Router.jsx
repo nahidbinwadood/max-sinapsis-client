@@ -4,6 +4,7 @@ import Homepage from '../Pages/Homepage';
 import Services from '../Pages/Services';
 import Projects from '../Pages/Projects';
 import Portfolio from '../Pages/Portfolio';
+import Creativity from '../Pages/Creativity';
 
 const router = createBrowserRouter(
   [
@@ -29,7 +30,7 @@ const router = createBrowserRouter(
         },
         {
           path: '/creativity',
-          element: <Homepage />,
+          element: <Creativity />,
         },
         {
           path: '/contact',

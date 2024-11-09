@@ -1,6 +1,6 @@
 const Homepage = () => {
   return (
-    <section className="mt-8 flex min-h-[80vh] gap-12">
+    <section className="mt-10 flex min-h-[80vh] gap-12">
       <div className="w-[60%]">
         <div>
           <h2 className="text-2xl font-primaryBold">
