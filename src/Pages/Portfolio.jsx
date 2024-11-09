@@ -170,10 +170,10 @@ const Portfolio = () => {
               {tabs.map((tab) => (
                 <button
                   onClick={() => setActiveTab(tab)}
-                  className={`text-xl lowercase font-primaryMedium py-1 ${
+                  className={`text-xl lowercase  py-1 ${
                     activeTab.title == tab.title
-                      ? 'text-black'
-                      : 'text-[#666633]'
+                      ? 'text-black font-primaryMedium'
+                      : 'text-[#666633] font-primaryTest'
                   }`}
                   key={tab?.title}
                 >
