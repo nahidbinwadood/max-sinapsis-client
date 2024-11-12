@@ -16,7 +16,7 @@ const Footer = () => {
       path: '/projects',
     },
     {
-      title: 'Artwork',
+      title: 'Portfolio',
       path: '/portfolio',
     },
     {
