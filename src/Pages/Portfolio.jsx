@@ -172,7 +172,7 @@ const Portfolio = () => {
                   onClick={() => setActiveTab(tab)}
                   className={`text-xl lowercase  py-1 ${
                     activeTab.title == tab.title
-                      ? 'text-black font-primaryMedium'
+                      ? 'text-black font-primaryBold'
                       : 'text-[#666633] font-primaryTest'
                   }`}
                   key={tab?.title}
