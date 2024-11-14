@@ -55,8 +55,8 @@ const Creativity = () => {
         <div>
           {/* title */}
           <div className="flex items-center gap-3">
-            <div className="bg-secondary size-2 rounded-full" />
-            <h2 className="text-[#666633] font-primaryTest text-xl lowercase -mt-1 tracking-wide">
+            <div className="bg-secondary size-[14px] rounded-full" />
+            <h2 className="text-[#666633] font-primaryBold text-xl lowercase -mt-1 tracking-wide">
               creative leadership
             </h2>
           </div>
@@ -122,8 +122,8 @@ const Creativity = () => {
       {/* contributions */}
       <div className="mt-10">
         <div className="flex items-center gap-3">
-          <div className="bg-secondary size-2 rounded-full" />
-          <h2 className="text-[#666633] font-primaryTest text-xl lowercase -mt-1 tracking-wide">
+          <div className="bg-secondary size-[14px] rounded-full" />
+          <h2 className="text-[#666633] font-primaryBold text-xl lowercase -mt-1 tracking-wide">
             creative contributions
           </h2>
         </div>

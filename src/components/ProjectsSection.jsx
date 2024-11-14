@@ -3,10 +3,10 @@ const ProjectsSection = ({ project }) => {
   const { title, location, description } = project;
   return (
     <div className="flex gap-5">
-      <div className="size-2 bg-secondary rounded-full flex-shrink-0" />
+      <div className="size-[14px] bg-secondary rounded-full flex-shrink-0" />
       <div className="-mt-2">
-        <h3 className="text-black font-primaryTest tracking-wider text-xl lowercase">
-          {title} - <span className="text-[#333]">{location && location}</span>
+        <h3 className=" font-primaryBold tracking-wider text-xl lowercase text-secondary">
+          {title} - <span className="font-primaryTest text-black">{location && location}</span>
         </h3>
         <p className="text-secondary font-primaryTest tracking-wider text-base">
           {description}
