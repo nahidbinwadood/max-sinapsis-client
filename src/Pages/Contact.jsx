@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   EmailSvg,
   LocationSvg,
@@ -5,17 +6,108 @@ import {
   TelephoneSvg,
 } from '../components/SvgContainer';
 import Title from '../components/Title';
+import useAuth from '../Hooks/useAuth';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
+
+const formNames = [
+  {
+    name: 'full_name',
+    value: '',
+    placeholder: 'Enter Your Name*',
+    type: 'text',
+  },
+  {
+    name: 'telephone',
+    value: '',
+    placeholder: 'Enter Your Telephone',
+    type: 'tel',
+  },
+  {
+    name: 'address',
+    value: '',
+    placeholder: 'Enter Your Address',
+    type: 'text',
+  },
+  { name: 'city', value: '', placeholder: 'Enter Your City', type: 'text' },
+  { name: 'state', value: '', placeholder: 'Enter Your State', type: 'text' },
+  { name: 'zip', value: '', placeholder: 'Enter Your Zip', type: 'number' },
+  {
+    name: 'country',
+    value: '',
+    placeholder: 'Enter Your Country',
+    type: 'text',
+  },
+  { name: 'email', value: '', placeholder: 'Enter Your Email*', type: 'email' },
+  {
+    name: 'message',
+    value: '',
+    placeholder: 'Enter Your Message',
+    type: 'textarea',
+  },
+];
 
 const Contact = () => {
+  const { isSpanish } = useAuth();
+  const [formData, setFormData] = useState(formNames);
+  const axiosPublic = useAxiosPublic();
+
+  // Fetch contact address on mount
+  useEffect(() => {
+    const fetchContactAddress = async () => {
+      try {
+        const { data } = await axiosPublic.get('/getcontact-address');
+        setFormData((prevData) =>
+          prevData.map((field) => ({
+            ...field,
+            value: data[field.name] || field.value, // Prefill with fetched data
+          }))
+        );
+      } catch (error) {
+        console.error('Error fetching contact address:', error);
+      }
+    };
+
+    fetchContactAddress();
+  }, [axiosPublic]);
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) =>
+      prevData.map((field) =>
+        field.name === name ? { ...field, value } : field
+      )
+    );
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const dataObject = formData.reduce((acc, field) => {
+      acc[field.name] = field.value;
+      return acc;
+    }, {});
+
+    console.log('Form Data:', dataObject);
+
+    try {
+     // const response = await axiosPublic.post('/submit-contact', dataObject);
+   //   console.log('Form submitted successfully:', response.data);
+    } catch (error) {
+     // console.error('Error submitting form:', error);
+    }
+  };
+
   return (
     <section className="pb-32">
-      <Title title="contact" />
+      <Title title={isSpanish ? 'Contacto' : 'Contact'} />
 
-      {/* contact form */}
+      {/* Contact Information and Form */}
       <div className="mt-10 flex gap-6">
-        {/* left side */}
+        {/* Left Side: Contact Info */}
         <div className="w-[30%] h-fit pb-16 bg-secondary rounded-lg p-8 text-white font-primaryTest tracking-wider flex flex-col gap-6">
-          <div className="flex gap-5 ">
+          <div className="flex gap-5">
             <LocationSvg />
             <div className="text-lg">
               <p>Ana Laura Vargas</p>
@@ -25,118 +117,60 @@ const Contact = () => {
           </div>
           <div className="flex gap-5 text-lg items-center">
             <PhoneSvg />
-            <div>
-              <a href="tel:+(506) 2289-7141">+(506) 2289-7141</a>
-            </div>
+            <a href="tel:+(506) 2289-7141">+(506) 2289-7141</a>
           </div>
           <div className="flex gap-5 text-lg items-center">
             <TelephoneSvg />
-            <div>
-              <a href="tel:+(506) 7017-7472">+(506) 7017-7472</a>
-            </div>
+            <a href="tel:+(506) 7017-7472">+(506) 7017-7472</a>
           </div>
           <div className="flex gap-5 text-lg items-center">
             <EmailSvg />
-            <div>
-              <a href="mailto:alaura@projectartwork.com">
-                alaura@projectartwork.com
-              </a>
-            </div>
+            <a href="mailto:alaura@projectartwork.com">
+              alaura@projectartwork.com
+            </a>
           </div>
         </div>
 
-        {/* right side */}
+        {/* Right Side: Contact Form */}
         <div className="px-9 py-10 border-2 border-secondary rounded-lg w-[70%] font-primaryTest tracking-wider">
           <p className="text-lg">
-            Please contact us using the information at left, or complete this
-            form, and we will get back to you as soon as possible. Thanks!!
+            Please contact us using the information on the left, or complete
+            this form, and we will get back to you as soon as possible. Thanks!
           </p>
-          <form action="" className="mt-7 w-full space-y-4">
-            <div>
-              <input
-                required
-                placeholder="Enter Your Name*"
-                className="w-full border border-secondary rounded-lg px-5 py-3.5 focus:outline-none"
-                type="text"
-                name="name"
-                id=""
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Enter Your Telephone"
-                className="w-full border border-secondary rounded-lg px-5 py-3.5 focus:outline-none"
-                type="number"
-                name="telephone"
-                id=""
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Enter Your Address"
-                className="w-full border border-secondary rounded-lg px-5 py-3.5 focus:outline-none"
-                type="text"
-                name="address"
-                id=""
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Enter Your City"
-                className="w-full border border-secondary rounded-lg px-5 py-3.5 focus:outline-none"
-                type="text"
-                name="city"
-                id=""
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Enter Your State"
-                className="w-full border border-secondary rounded-lg px-5 py-3.5 focus:outline-none"
-                type="text"
-                name="state"
-                id=""
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Enter Your Zip"
-                className="w-full border border-secondary rounded-lg px-5 py-3.5 focus:outline-none"
-                type="number"
-                name="zip"
-                id=""
-              />
-            </div>
-            <div>
-              <input
-                placeholder="Enter Your Country"
-                className="w-full border border-secondary rounded-lg px-5 py-3.5 focus:outline-none"
-                type="text"
-                name="country"
-                id=""
-              />
-            </div>
-            <div>
-              <input
-                required
-                placeholder="Enter Your Email*"
-                className="w-full border border-secondary rounded-lg px-5 py-3.5 focus:outline-none"
-                type="email"
-                name="email"
-                id=""
-              />
-            </div>
-            <div>
-              <textarea
-                rows={5}
-                className="border border-secondary rounded-lg px-6 py-5 w-full focus:outline-none"
-                placeholder="Enter Your Message"
-                name="message"
-                id=""
-              ></textarea>
-            </div>
+          <form onSubmit={handleSubmit} className="mt-7 w-full space-y-4">
+            {formData.map((field) => (
+              <div key={field.name}>
+                {field.type === 'textarea' ? (
+                  <textarea
+                    rows={5}
+                    className="border border-secondary rounded-lg px-6 py-5 w-full focus:outline-none"
+                    placeholder={field.placeholder}
+                    name={field.name}
+                    value={field.value}
+                    onChange={handleChange}
+                  ></textarea>
+                ) : (
+                  <input
+                    required={
+                      field.name === 'full_name' || field.name === 'email'
+                    }
+                    className="w-full border border-secondary rounded-lg px-5 py-3.5 focus:outline-none"
+                    placeholder={field.placeholder}
+                    type={field.type}
+                    name={field.name}
+                    value={field.value}
+                    onChange={handleChange}
+                  />
+                )}
+              </div>
+            ))}
             <div className="pt-5">
-              <button type="submit" className='bg-secondary py-3.5 text-white w-full rounded-lg border border-secondary hover:bg-transparent hover:text-secondary transition duration-500'>Contact</button>
+              <button
+                type="submit"
+                className="bg-secondary py-3.5 text-white w-full rounded-lg border border-secondary hover:bg-transparent hover:text-secondary transition duration-500"
+              >
+                {isSpanish ? 'Enviar' : 'Contact'}
+              </button>
             </div>
           </form>
         </div>

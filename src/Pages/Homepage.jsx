@@ -1,4 +1,9 @@
+
+import useAuth from './../Hooks/useAuth';
 const Homepage = () => {
+  const {isSpanish}=useAuth()
+  console.log(isSpanish);
+
   return (
     <section className="mt-10 flex min-h-[80vh] gap-12">
       <div className="w-[60%]">

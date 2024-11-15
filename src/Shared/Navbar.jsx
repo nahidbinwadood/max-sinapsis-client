@@ -8,8 +8,10 @@ import {
 } from '../components/SvgContainer';
 import NavLinks from '../components/NavLinks';
 import { Link } from 'react-router-dom';
+import useAuth from '../Hooks/useAuth';
 
 const Navbar = () => {
+  const { setIsSpanish } = useAuth();
   const [language, setLanguage] = useState('EN');
   const [showLanguage, setShowLanguage] = useState(false);
   const languageRef = useRef(null);
@@ -50,7 +52,13 @@ const Navbar = () => {
       path: '/contact',
     },
   ];
+
   useEffect(() => {
+    if (language == 'EN') {
+      setIsSpanish(false);
+    } else if (language == 'ES') {
+      setIsSpanish(true);
+    }
     const handleClickOutside = (event) => {
       if (languageRef.current && !languageRef.current.contains(event.target)) {
         setShowLanguage(false);
@@ -64,7 +72,7 @@ const Navbar = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [language, setIsSpanish]);
   return (
     <nav className="">
       <div className="bg-primary">
