@@ -6,6 +6,8 @@ export const AuthContext=createContext(null)
 const AuthProvider=({children})=>{
     const [isSpanish,setIsSpanish] = useState(false)
 
+    console.log(isSpanish);
+
     const allValues={isSpanish,setIsSpanish}
     return(
         <AuthContext.Provider value={allValues}>

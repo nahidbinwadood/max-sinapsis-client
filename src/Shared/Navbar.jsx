@@ -9,12 +9,17 @@ import {
 import NavLinks from '../components/NavLinks';
 import { Link } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
+import Hamburger from 'hamburger-react';
+import Sidebar from '../components/Sidebar';
 
 const Navbar = () => {
+  const [isOpen, setOpen] = useState(false);
   const { setIsSpanish } = useAuth();
   const [language, setLanguage] = useState('EN');
   const [showLanguage, setShowLanguage] = useState(false);
   const languageRef = useRef(null);
+  const sidebarRef = useRef();
+  const hamburgerRef = useRef();
   const languages = [
     {
       name: 'English-US',
@@ -52,8 +57,40 @@ const Navbar = () => {
       path: '/contact',
     },
   ];
-
+  const spanishNavLinks = [
+    {
+      title: 'Acerca de',
+      path: '/',
+    },
+    {
+      title: 'Servicios',
+      path: '/services',
+    },
+    {
+      title: 'Proyectos',
+      path: '/projects',
+    },
+    {
+      title: 'Portafolio',
+      path: '/portfolio',
+    },
+    {
+      title: 'Creatividad',
+      path: '/creativity',
+    },
+    {
+      title: 'Contacto',
+      path: '/contact',
+    },
+  ];
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    //
     if (language == 'EN') {
       setIsSpanish(false);
     } else if (language == 'ES') {
@@ -63,7 +100,21 @@ const Navbar = () => {
       if (languageRef.current && !languageRef.current.contains(event.target)) {
         setShowLanguage(false);
       }
+
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) &&
+        !hamburgerRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+      }
     };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
 
     // Add event listener when component mounts
     document.addEventListener('mousedown', handleClickOutside);
@@ -72,28 +123,40 @@ const Navbar = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [language, setIsSpanish]);
+  }, [isOpen, language, setIsSpanish]);
   return (
     <nav className="">
-      <div className="bg-primary">
-        <div className="container mx-auto flex items-center justify-between py-7">
+      <div className="bg-primary px-5 md:px-8 2xl:px-0">
+        <div className="container mx-auto flex items-center justify-between py-4 md:py-6 lg:py-7">
           {/* logo */}
           <div>
             <Link to="/">
               <img
-                className="w-full max-w-[400px] h-full object-cover"
+                className="w-full max-w-[170px] sm:max-w-[200px] md:max-w-[250px] lg:max-w-[300px] xl:max-w-[350px] 2xl:max-w-[400px] h-full object-cover"
                 src={logo}
                 alt=""
               />
             </Link>
           </div>
-          <div className="flex items-center gap-6 text-secondary ">
-            <h2 className="text-3xl font-primaryRegular">
+
+          {/* hamburger */}
+          <div ref={hamburgerRef} className="lg:hidden">
+            <Hamburger
+              color="#666633"
+              size={20}
+              toggled={isOpen}
+              toggle={setOpen}
+            />
+          </div>
+          <div className="lg:flex items-center gap-6 text-secondary hidden">
+            <Link to="/" className="text-2xl xl:text-3xl font-primaryRegular">
               ANALAURA
               <span className="font-primaryBold text-secondary">VARGAS</span>
-            </h2>
+            </Link>
             <div className="flex items-center gap-4">
-              <HomeIconSvg />
+              <Link to="/">
+                <HomeIconSvg />
+              </Link>
 
               {/* language */}
               <div className="relative">
@@ -143,9 +206,19 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="w-[1200px] mx-auto py-8 border-b-2 border-secondary">
+      <div className="mx-5 md:mx-8 2xl:w-[1200px] 2xl:mx-auto lg:py-4 2xl:py-8 border-b-2 border-secondary hidden lg:block">
         <NavLinks navLinks={navLinks} />
       </div>
+
+      {/* sidebar */}
+
+      <Sidebar
+        sidebarRef={sidebarRef}
+        isOpen={isOpen}
+        setOpen={setOpen}
+        navLinks={navLinks}
+        spanishNavLinks={spanishNavLinks}
+      />
     </nav>
   );
 };

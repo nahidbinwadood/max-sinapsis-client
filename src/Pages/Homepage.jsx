@@ -5,13 +5,13 @@ const Homepage = () => {
   console.log(isSpanish);
 
   return (
-    <section className="mt-10 flex min-h-[80vh] gap-12">
-      <div className="w-[60%]">
+    <section className="mt-5 sm:mt-6 md:mt-8 lg:mt-10 flex flex-col md:flex-row gap-8 md:gap-10 lg:gap-12 px-5 md:px-8 pb-20 lg:pb-44">
+      <div className="md:w-[60%]">
         <div>
-          <h2 className="text-2xl font-primaryBold">
+          <h2 className="text-xl md:text-2xl font-primaryBold">
             <span>+</span> about...
           </h2>
-          <div className="mt-5 text-base font-primaryMedium tracking-wider text-black/70 space-y-8">
+          <div className="mt-3 md:mt-5 text-sm md:text-base font-primaryMedium tracking-wider text-black/70  space-y-4 md:space-y-6 lg:space-y-8">
             <p>
               An exclusive service which offers the creation, production and
               supply of art and artwork for hospitality, corporate or
@@ -37,8 +37,8 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <div className="w-[40%]">
-        <div className="h-[520px]">
+      <div className="md-[40%]">
+        <div className="h-[350px] md:h-[520px]">
           <img
             className="h-full w-full object-cover"
             src="https://i.postimg.cc/fWdbSQ7X/banner.jpg"

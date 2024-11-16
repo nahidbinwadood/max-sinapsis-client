@@ -144,8 +144,8 @@ const Projects = () => {
 
       {/* Projects section */}
       <div className="ml-5 mt-6 space-y-5">
-        {allProjects.map((project) => (
-          <ProjectsSection key={project} project={project} />
+        {allProjects.map((project,idx) => (
+          <ProjectsSection key={idx} project={project} />
         ))}
       </div>
     </section>

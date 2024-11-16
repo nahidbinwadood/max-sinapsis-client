@@ -7,7 +7,7 @@ const MainLayout = () => {
     <>
       <ScrollRestoration />
       <Navbar />
-      <div className="min-h-[calc(100vh-564px)] w-[1200px] mx-auto">
+      <div className="min-h-[calc(100vh-564px)] xl:w-[1200px] mx-auto overflow-x-hidden">
         <Outlet />
       </div>
       <Footer />
