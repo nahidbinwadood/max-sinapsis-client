@@ -3,15 +3,15 @@ import Title from '../components/Title';
 
 const Services = () => {
   return (
-    <section className='pb-32'>
+    <section className='pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0'>
       <Title title={'services'} />
 
       {/* Contents */}
-      <div className="ml-6 mt-5">
+      <div className="ml-6 mt-3 md:mt-5">
         <div>
           {/* title */}
           <SectionTitle title={'concept'} />
-          <div className="mt-2 ml-6 text-[#333] font-primaryMedium tracking-wider text-black/70 space-y-8">
+          <div className="mt-2 ml-6 text-[#333] text-sm md:text-base font-primaryMedium tracking-wider text-black/70 space-y-5 md:space-y-6 lg:space-y-8">
             <p>
               We create and supply artwork for hotels, offices, residences and
               spaces where art contributes significantly to create an atmosphere
@@ -26,17 +26,17 @@ const Services = () => {
           </div>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-16">
           {/* title */}
           <div>
             <SectionTitle title={'Step by Step'} />
             <div>
-              <p className="font-primaryMedium tracking-wider text-[#333] ml-6 mt-1">
+              <p className="font-primaryMedium text-sm md:text-base tracking-wider text-[#333] ml-6 mt-1">
                 Our work process can be outlined as follows:
               </p>
             </div>
           </div>
-          <div className="mt-5 ml-6">
+          <div className="mt-3 text-sm md:text-base md:mt-5 ml-6">
             <div className="text-[#333] font-primaryMedium tracking-wider space-y-4">
               <p>
                 <span className="font-primaryLightBold text-secondary">
@@ -47,7 +47,7 @@ const Services = () => {
                 specifications.
               </p>
 
-              <p className="space-y-8">
+              <p className="space-y-5 md:space-y-6 lg:space-y-8">
                 <span className="font-primaryLightBold text-secondary">
                   Art Proposal,
                 </span>
@@ -92,11 +92,11 @@ const Services = () => {
           </div>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-16">
           {/* title */}
           <SectionTitle title={'Step by Step'} />
 
-          <div className="mt-5 space-y-4 ml-6">
+          <div className="mt-3 md:mt-5 space-y-4 ml-6 text-sm md:text-base">
             <p className="text-[#333] tracking-wider font-primaryMedium">
               All artwork chosen by client is exclusive, that is to say, it
               becomes unique for the project and worked in limited editions

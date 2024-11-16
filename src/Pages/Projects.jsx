@@ -139,7 +139,7 @@ const Projects = () => {
     },
   ];
   return (
-    <section className="pb-32">
+    <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
       <Title title={'projects '} />
 
       {/* Projects section */}

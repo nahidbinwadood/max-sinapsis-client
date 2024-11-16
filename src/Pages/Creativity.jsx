@@ -38,13 +38,13 @@ const Creativity = () => {
     },
   ];
   return (
-    <section className='pb-32'>
+    <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
       <Title title="creativity" />
       {/* Content goes here */}
 
-      <div className="mt-5 flex gap-10 items-stretch">
+      <div className="mt-5 flex flex-col md:flex-row gap-10 items-stretch">
         <div>
-          <div className="w-[320px] h-full max-h-[450px] flex-shrink-0">
+          <div className="md:w-[320px] h-[350px] 2xl:h-full 2xl:max-h-[450px] flex-shrink-0">
             <img
               className="w-full h-full object-cover"
               src="https://i.postimg.cc/3JH8tXbc/dp.jpg"
@@ -55,14 +55,14 @@ const Creativity = () => {
         <div>
           {/* title */}
           <div className="flex items-center gap-3">
-            <div className="bg-secondary size-[14px] rounded-full" />
-            <h2 className="text-[#666633] font-primaryBold text-xl lowercase -mt-1 tracking-wide">
+            <div className="bg-secondary size-2 sm:size-3 lg:size-[14px] rounded-full" />
+            <h2 className="text-[#666633] font-primaryBold md:text-xl lowercase -mt-1 tracking-wide">
               creative leadership
             </h2>
           </div>
 
           {/* description */}
-          <p className="ml-5 mt-2 font-primaryTest tracking-wider">
+          <p className="ml-5 mt-2 font-primaryTest tracking-wider text-sm md:text-base">
             The leadership of the creative process is the responsibility of{' '}
             <span className="font-primaryMedium">Ana Laura Vargas</span> ,{' '}
             <br />
@@ -70,9 +70,9 @@ const Creativity = () => {
           </p>
 
           {/* statement */}
-          <div className="font-primaryTest text-secondary ml-5 mt-10">
-            <h3 className="text-xl">Statement</h3>
-            <p className="h-3/4 mt-2 tracking-wider text-black">
+          <div className="font-primaryTest text-secondary ml-5 mt-5 md:mt-8 lg:mt-10">
+            <h3 className="md:text-xl">Statement</h3>
+            <p className="lg:h-3/4 mt-2 text-sm md:text-base tracking-wider text-black">
               The artist is alwlays seeking diverse languages for creativity. I
               have found them exploring painting, drawing, photography,
               ceramics, mosaic, installation, collage, wood, metal, and
@@ -81,9 +81,9 @@ const Creativity = () => {
           </div>
 
           {/* studies */}
-          <div className="font-primaryTest text-secondary ml-5 mt-10">
-            <h3 className="text-xl">Studies</h3>
-            <div className="h-3/4 mt-2 tracking-wider text-black space-y-2">
+          <div className="font-primaryTest text-secondary ml-5 mt-5 md:mt-8 lg:mt-10">
+            <h3 className="md:text-xl">Studies</h3>
+            <div className="lg:h-3/4 text-sm md:text-base mt-2 tracking-wider text-black space-y-2">
               <p>
                 - School of Fine Arts, Universidad Autónoma de Centroamérica,
                 emphasis on watercolor.
@@ -100,17 +100,17 @@ const Creativity = () => {
       </div>
 
       {/* exhibits */}
-      <div className="mt-16 font-primaryTest space-y-10">
+      <div className="mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-16 font-primaryTest space-y-5 md:space-y-6 lg:space-y-8 2xl:space-y-10 ml-5 2xl:ml-0">
         {creativityContents?.map((item) => (
           <CreativitySection key={item} item={item} />
         ))}
       </div>
 
       {/* Membership */}
-      <div className="mt-10 font-primaryTest">
+      <div className="mt-6 md:mt-8 lg:mt-10 font-primaryTest ml-5 2xl:ml-0">
         <div>
-          <h3 className="text-xl text-secondary">Memberships</h3>
-          <div className="space-y-1 mt-2 tracking-wider">
+          <h3 className="md:text-xl text-secondary">Memberships</h3>
+          <div className="space-y-1 mt-2 tracking-wider text-sm md:text-base">
             <p>- Entrenarte Group, guest artist</p>
             <p>- Costa Rican Association of Watercolorists, President.</p>
             <p>- International Watercolor Society</p>
@@ -120,15 +120,15 @@ const Creativity = () => {
       </div>
 
       {/* contributions */}
-      <div className="mt-10">
+      <div className="mt-6 md:mt-8 lg:mt-10 ml-5 2xl:ml-0">
         <div className="flex items-center gap-3">
-          <div className="bg-secondary size-[14px] rounded-full" />
-          <h2 className="text-[#666633] font-primaryBold text-xl lowercase -mt-1 tracking-wide">
+          <div className="bg-secondary size-2 sm:size-3 lg:size-[14px] rounded-full" />
+          <h2 className="text-[#666633] font-primaryBold md:text-xl lowercase -mt-1 tracking-wide">
             creative contributions
           </h2>
         </div>
 
-        <div className="font-primaryTest tracking-wider mt-6 ml-5 space-y-8">
+        <div className="font-primaryTest text-sm md:text-base tracking-wider mt-3 md:mt-6 ml-5 space-y-4 md:space-y-6 lg:space-y-8">
           <p>
             Under the leadership of Ana Laura Vargas, creative contributions are
             obtained form other artists and professionals, selected in
