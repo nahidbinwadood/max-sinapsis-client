@@ -101,8 +101,8 @@ const Creativity = () => {
 
       {/* exhibits */}
       <div className="mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-16 font-primaryTest space-y-5 md:space-y-6 lg:space-y-8 2xl:space-y-10 ml-5 2xl:ml-0">
-        {creativityContents?.map((item) => (
-          <CreativitySection key={item} item={item} />
+        {creativityContents?.map((item,idx) => (
+          <CreativitySection key={idx} item={item} />
         ))}
       </div>
 

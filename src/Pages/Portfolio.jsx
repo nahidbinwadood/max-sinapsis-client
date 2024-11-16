@@ -1,16 +1,14 @@
-import { useState } from 'react';
-
-// Import Swiper React components
+import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode, Navigation, Thumbs, Autoplay } from 'swiper/modules';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import { PlusSvg } from '../components/SvgContainer';
 
-// import required modules
-
-import { NextArrowSvg, PrevArrowSvg } from '../components/SvgContainer';
 const Portfolio = () => {
   const tabs = [
     {
@@ -33,6 +31,10 @@ const Portfolio = () => {
       images: [
         'https://i.postimg.cc/52hfT8sG/1.jpg',
         'https://i.postimg.cc/7LzZZKCw/10.jpg',
+        'https://i.postimg.cc/7LzZZKCw/10.jpg',
+        'https://i.postimg.cc/7LzZZKCw/10.jpg',
+        'https://i.postimg.cc/7LzZZKCw/10.jpg',
+        'https://i.postimg.cc/7LzZZKCw/10.jpg',
       ],
       details: {
         title: 'Pencil and Charcoal Creations',
@@ -43,6 +45,9 @@ const Portfolio = () => {
     {
       title: 'Ceramics',
       images: [
+        'https://i.postimg.cc/CLv1PBTT/11.jpg',
+        'https://i.postimg.cc/CLv1PBTT/11.jpg',
+        'https://i.postimg.cc/CLv1PBTT/11.jpg',
         'https://i.postimg.cc/CLv1PBTT/11.jpg',
         'https://i.postimg.cc/52TtJh2s/12.jpg',
         'https://i.postimg.cc/P5PqBXTL/13.jpg',
@@ -58,6 +63,9 @@ const Portfolio = () => {
       images: [
         'https://i.postimg.cc/Yq20zNPz/14.jpg',
         'https://i.postimg.cc/MZmXB39G/15.jpg',
+        'https://i.postimg.cc/MZmXB39G/15.jpg',
+        'https://i.postimg.cc/MZmXB39G/15.jpg',
+        'https://i.postimg.cc/MZmXB39G/15.jpg',
         'https://i.postimg.cc/X7DjKRdn/2.jpg',
       ],
       details: {
@@ -70,6 +78,9 @@ const Portfolio = () => {
       title: 'Installation',
       images: [
         'https://i.postimg.cc/GtLLzrXm/7.jpg',
+        'https://i.postimg.cc/MZmXB39G/15.jpg',
+        'https://i.postimg.cc/MZmXB39G/15.jpg',
+        'https://i.postimg.cc/MZmXB39G/15.jpg',
         'https://i.postimg.cc/MZmXB39G/15.jpg',
         'https://i.postimg.cc/X7DjKRdn/2.jpg',
       ],
@@ -85,6 +96,9 @@ const Portfolio = () => {
         'https://i.postimg.cc/7P9YhGLG/6.jpg',
         'https://i.postimg.cc/GtLLzrXm/7.jpg',
         'https://i.postimg.cc/DZdfqmdN/8.jpg',
+        'https://i.postimg.cc/DZdfqmdN/8.jpg',
+        'https://i.postimg.cc/DZdfqmdN/8.jpg',
+        'https://i.postimg.cc/DZdfqmdN/8.jpg',
       ],
       details: {
         title: 'Pieces of Harmony',
@@ -98,6 +112,9 @@ const Portfolio = () => {
         'https://i.postimg.cc/ydzYg099/9.jpg',
         'https://i.postimg.cc/7LzZZKCw/10.jpg',
         'https://i.postimg.cc/CLv1PBTT/11.jpg',
+        'https://i.postimg.cc/CLv1PBTT/11.jpg',
+        'https://i.postimg.cc/CLv1PBTT/11.jpg',
+        'https://i.postimg.cc/CLv1PBTT/11.jpg',
       ],
       details: {
         title: 'Forged Art',
@@ -109,6 +126,10 @@ const Portfolio = () => {
       title: 'Photography',
       images: [
         'https://i.postimg.cc/52TtJh2s/12.jpg',
+        'https://i.postimg.cc/P5PqBXTL/13.jpg',
+        'https://i.postimg.cc/P5PqBXTL/13.jpg',
+        'https://i.postimg.cc/P5PqBXTL/13.jpg',
+        'https://i.postimg.cc/P5PqBXTL/13.jpg',
         'https://i.postimg.cc/P5PqBXTL/13.jpg',
         'https://i.postimg.cc/MZmXB39G/15.jpg',
       ],
@@ -125,9 +146,11 @@ const Portfolio = () => {
         'https://i.postimg.cc/52TtJh2s/12.jpg',
         'https://i.postimg.cc/P5PqBXTL/13.jpg',
         'https://i.postimg.cc/MZmXB39G/15.jpg',
+        'https://i.postimg.cc/MZmXB39G/15.jpg',
+        'https://i.postimg.cc/MZmXB39G/15.jpg',
       ],
       details: {
-        title: 'Nature’s Forms',
+        title: "Nature's Forms",
         description:
           'This collection draws inspiration from nature, utilizing organic shapes and materials to create artworks that reflect the beauty and complexity of the natural world. These pieces often incorporate elements like wood, leaves, and natural dyes.',
       },
@@ -136,6 +159,8 @@ const Portfolio = () => {
       title: 'Textile',
       images: [
         'https://i.postimg.cc/52hfT8sG/1.jpg',
+        'https://i.postimg.cc/7LzZZKCw/10.jpg',
+        'https://i.postimg.cc/7LzZZKCw/10.jpg',
         'https://i.postimg.cc/7LzZZKCw/10.jpg',
         'https://i.postimg.cc/52TtJh2s/12.jpg',
       ],
@@ -148,30 +173,149 @@ const Portfolio = () => {
   ];
 
   const [activeTab, setActiveTab] = useState(tabs[0]);
-  const [swiperRef, setSwiperRef] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const sidebarTabRef = useRef(null);
+  const [showTab, setShowTab] = useState(false);
 
-  const currentTab = tabs.find((item) => item?.title == activeTab?.title);
+  const currentTab = tabs.find((item) => item?.title === activeTab?.title);
 
+  console.log(showTab);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        sidebarTabRef.current &&
+        !sidebarTabRef.current.contains(event.target)
+      ) {
+        setShowTab(false);
+      }
+    };
+
+    const swiper = document.querySelector('.swiper');
+    if (showTab) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'hidden';
+      if (swiper) {
+        swiper.style.zIndex = '-1';
+      }
+    } else {
+      document.body.style.overflow = 'auto';
+      if (swiper) {
+        swiper.style.zIndex = '1';
+      }
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    // Add event listener when component mounts
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Clean up event listener when component unmounts
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showTab]);
   return (
-    <section className="min-h-[100vh] mt-10">
-      {/* left side */}
-      <div className="flex gap-16">
-        <div className="w-[25%]">
-          {/* title */}
-          <div>
-            <h1 className="text-2xl font-primaryBold">
+    <section className="min-h-[100vh] mt-5 sm:mt-6 md:mt-8 lg:mt-10">
+      <style>
+        {`
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #666633;
+      border-radius: 50%;
+    }
+
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+      font-size: 20px;
+      color: white;
+    }
+
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover {
+      background-color: #4d4d26;
+    }
+
+    .swiper-button-prev.swiper-button-disabled,
+    .swiper-button-next.swiper-button-disabled {
+      opacity: 0.5;
+      pointer-events: auto;
+      cursor: not-allowed;
+    }
+
+    /* Responsive styles for small devices */
+    @media (max-width: 640px) {
+      .swiper-button-prev,
+      .swiper-button-next {
+        width: 30px;
+        height: 30px;
+      }
+
+      .swiper-button-prev:after,
+      .swiper-button-next:after {
+        font-size: 16px;
+      }
+    }
+  `}
+      </style>
+
+      <div className="flex flex-col md:flex-row gap-8 md:gap-16 px-5 md:px-8 2xl:px-0">
+        {/* tabs */}
+
+        {/* left side */}
+        <div className="md:w-[35%] lg:w-[25%]">
+          <div className="w-full flex items-center justify-between">
+            <h1 className="text-xl md:text-2xl font-primaryBold">
               <span>+</span> portfolio
             </h1>
+
+            {/* sidebar tab section */}
+            <div
+              onClick={() => setShowTab(true)}
+              className="size-8 bg-black flex items-center justify-center rounded-md md:hidden"
+            >
+              <PlusSvg />
+
+              {/* sidebar tabs */}
+              <div
+                ref={sidebarTabRef}
+                className={`fixed top-[80px] transition-transform duration-500 min-w-[210px] min-h-[100vh] z-10 right-0 bg-secondary text-primary font-primaryTest px-10 py-6 shadow-lg ${
+                  showTab ? 'translate-x-0' : 'translate-x-full'
+                }`}
+              >
+                <div className="flex flex-col items-start">
+                  {tabs.map((tab) => (
+                    <button
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setActiveTab(tab);
+                        setShowTab(false);
+                      }}
+                      className={`lowercase py-1 ${
+                        activeTab.title === tab.title
+                          ? 'text-black font-primaryBold'
+                          : 'text-primary font-primaryTest'
+                      }`}
+                      key={tab?.title}
+                    >
+                      {tab?.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* tabs */}
-          <div className="ml-20 mt-5">
+          <div className="ml-20 mt-5 hidden md:flex">
             <div className="flex flex-col items-start">
               {tabs.map((tab) => (
                 <button
                   onClick={() => setActiveTab(tab)}
-                  className={`text-xl lowercase  py-1 ${
-                    activeTab.title == tab.title
+                  className={`text-xl lowercase py-1 ${
+                    activeTab.title === tab.title
                       ? 'text-black font-primaryBold'
                       : 'text-[#666633] font-primaryTest'
                   }`}
@@ -183,57 +327,89 @@ const Portfolio = () => {
             </div>
           </div>
         </div>
-        <div className="w-3/4">
+
+        {/* right side */}
+        <div className="md:w-[65%] lg:w-3/4">
+          {/* Main Swiper */}
           <Swiper
-            onSwiper={setSwiperRef}
-            loop
-            centeredSlides
-            spaceBetween={20}
-            className="relative cursor-pointer w-full"
+            style={{
+              '--swiper-navigation-color': '#fff',
+              '--swiper-pagination-color': '#fff',
+            }}
+            loop={true}
+            spaceBetween={10}
+            navigation={true}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            thumbs={{
+              swiper:
+                thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+            }}
+            modules={[FreeMode, Navigation, Thumbs, Autoplay]}
+            className="mb-4"
           >
-            {/* nav buttons */}
-            <div className="w-full flex items-center justify-between px-12 absolute top-1/2 -translate-y-1/2 z-10">
-              <button
-                onClick={() => {
-                  swiperRef?.slidePrev();
-                }}
-                className="bg-secondary rounded-full size-10 p-2 flex items-center justify-center"
-              >
-                <PrevArrowSvg />
-              </button>
-              <button
-                onClick={() => {
-                  swiperRef?.slideNext();
-                }}
-                className="bg-secondary rounded-full size-10 p-2 flex items-center justify-center"
-              >
-                <NextArrowSvg />
-              </button>
-            </div>
-            {currentTab.images.map((img) => (
-              <SwiperSlide key={img}>
-                <div className="h-[500px] w-full">
-                  <img
-                    className="w-full h-full object-cover"
-                    src={img}
-                    alt=""
-                  />
-                </div>
+            {currentTab.images.map((image, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={image}
+                  alt={`${currentTab.title} ${index + 1}`}
+                  className="w-full h-[400px] object-cover"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Thumbs Swiper */}
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            loop={true}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              1024: {
+                slidesPerView: 5,
+                spaceBetween: 10,
+              },
+            }}
+            spaceBetween={10}
+            freeMode={true}
+            watchSlidesProgress={true}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            modules={[FreeMode, Navigation, Thumbs, Autoplay]}
+            className="h-24"
+          >
+            {currentTab.images.map((image, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={image}
+                  alt={`${currentTab.title} thumbnail ${index + 1}`}
+                  className="w-full h-full object-cover cursor-pointer"
+                />
               </SwiperSlide>
             ))}
           </Swiper>
 
           {/* details */}
-          <div>
-            {/* title */}
-            <div>
-              <h3 className="text-2xl font-primaryTest mt-10 text-secondary">
-                {currentTab?.details?.title}
-              </h3>
-              <p className="mt-5 text-lg font-primaryTest text-secondary">
-                {currentTab?.details?.description}
-              </p>
-            </div>
+          <div className="pb-10">
+            <h3 className="text-xl md:text-2xl font-primaryTest mt-5 md:mt-7 lg:mt-10 text-secondary">
+              {currentTab?.details?.title}
+            </h3>
+            <p className="mt-3 md:mt-5 text-sm md:text-base lg:text-lg font-primaryTest text-secondary">
+              {currentTab?.details?.description}
+            </p>
           </div>
         </div>
       </div>

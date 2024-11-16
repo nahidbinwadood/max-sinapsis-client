@@ -16,7 +16,7 @@ const Sidebar = ({
     <>
       <div
         ref={sidebarRef}
-        className={`fixed left-0 top-0 z-10 h-full w-60 transform shadow-lg bg-primary transition-transform duration-500 md:w-64 px-5 py-8  ${
+        className={`fixed left-0 top-0 z-10 h-full w-60 transform shadow-lg bg-primary transition-transform duration-500 md:w-64 px-5 py-8 lg:hidden ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -91,9 +91,12 @@ const Sidebar = ({
         </ul>
 
         {/* language */}
-        <div className=" flex flex-col mt-8 gap-5 text-sm">
+        <div className=" flex flex-col mt-8 gap-5 text-sm hidden">
           <h4
-            onClick={() => setIsSpanish(false)}
+            onClick={() => {
+              setIsSpanish(false);
+              setOpen(false);
+            }}
             className={`border ${
               !isSpanish
                 ? 'border-secondary font-primaryBold'
@@ -103,7 +106,10 @@ const Sidebar = ({
             English
           </h4>
           <h5
-            onClick={() => setIsSpanish(true)}
+            onClick={() => {
+              setIsSpanish(true);
+              setOpen(false);
+            }}
             className={`border ${
               isSpanish
                 ? 'border-secondary font-primaryBold'
