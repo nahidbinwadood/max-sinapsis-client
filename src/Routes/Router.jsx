@@ -6,6 +6,10 @@ import Projects from '../Pages/Projects';
 import Portfolio from '../Pages/Portfolio';
 import Creativity from '../Pages/Creativity';
 import Contact from '../Pages/Contact';
+import Login from '../Pages/Auth/Login';
+import ResetPassword from '../Pages/Auth/ResetPassword';
+import EmailVerification from '../Pages/Auth/EmailVerification';
+import SetPassword from '../Pages/Auth/SetPassword';
 
 const router = createBrowserRouter(
   [
@@ -38,6 +42,22 @@ const router = createBrowserRouter(
           element: <Contact />,
         },
       ],
+    },
+    {
+      path: '/login',
+      element: <Login />,
+    },
+    {
+      path: '/reset-password',
+      element: <ResetPassword />,
+    },
+    {
+      path: '/email-verification',
+      element: <EmailVerification />,
+    },
+    {
+      path: '/set-password',
+      element: <SetPassword />,
     },
   ],
   {

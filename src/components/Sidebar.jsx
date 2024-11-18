@@ -91,7 +91,7 @@ const Sidebar = ({
         </ul>
 
         {/* language */}
-        <div className=" flex flex-col mt-8 gap-5 text-sm hidden">
+        <div className=" lg:flex flex-col mt-8 gap-5 text-sm hidden">
           <h4
             onClick={() => {
               setIsSpanish(false);
