@@ -353,11 +353,13 @@ const Portfolio = () => {
           >
             {currentTab.images.map((image, index) => (
               <SwiperSlide key={index}>
-                <img
-                  src={image}
-                  alt={`${currentTab.title} ${index + 1}`}
-                  className="w-full h-[400px] object-cover"
-                />
+                <div className="w-full h-[250px] sm:h-[350px] md:h-[400px]">
+                  <img
+                    src={image}
+                    alt={`${currentTab.title} ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -366,6 +368,7 @@ const Portfolio = () => {
           <Swiper
             onSwiper={setThumbsSwiper}
             loop={true}
+            slidesPerView={2}
             breakpoints={{
               640: {
                 slidesPerView: 2,

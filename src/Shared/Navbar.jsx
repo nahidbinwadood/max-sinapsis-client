@@ -110,6 +110,21 @@ const Navbar = () => {
       }
     };
 
+    //adjust the slider:
+    const swiper = document.querySelector('.swiper');
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'hidden';
+      if (swiper) {
+        swiper.style.zIndex = '-1';
+      }
+    } else {
+      document.body.style.overflow = 'auto';
+      if (swiper) {
+        swiper.style.zIndex = '1';
+      }
+    }
+
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
