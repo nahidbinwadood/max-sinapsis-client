@@ -34,7 +34,7 @@ const SetPassword = () => {
   };
 
   return (
-    <div className="w-full flex h-screen bg-primary/50">
+    <div className="w-full flex h-screen bg-primary/50 max-h-[100vh]">
       {!passwordChanged ? (
         <div className="w-full h-full flex items-center justify-center">
           <div className="rounded-[24px] bg-primary border border-secondary w-full mx-5 md:mx-0 sm:w-[573px] py-10 px-5 md:px-0">

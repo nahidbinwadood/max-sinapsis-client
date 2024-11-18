@@ -20,7 +20,7 @@ const EmailVerification = () => {
     }, 2000);
   };
   return (
-    <div className="w-full flex h-screen bg-primary/50">
+    <div className="w-full flex h-screen bg-primary/50 max-h-[100vh]">
       <div className="w-full h-full flex items-center justify-center">
         <div className="rounded-[24px] border px-5 md:px-0 bg-primary border-secondary/50 shadow-lg mx-5 md:mx-0 w-full sm:w-[573px] py-10">
           <div className="text-center mt-5 md:mt-10">

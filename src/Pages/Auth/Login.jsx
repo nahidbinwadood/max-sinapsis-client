@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
   const [show, SetShow] = useState(false);
   const [loading, setLoading] = useState(false);
- // const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
 
@@ -18,7 +18,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full flex h-screen bg-primary/50">
+    <div className="w-full flex h-screen bg-primary/50 max-h-[100vh]">
       <div className="w-full h-full flex items-center justify-center">
         <div className="rounded-[24px] bg-primary border border-secondary/50 w-full mx-5 md:mx-0 sm:w-[573px] py-10 shadow-lg">
           <div className="text-center ">
@@ -72,7 +72,9 @@ const Login = () => {
                   name="password"
                   id="password"
                 />
-                <p className="text-sm md:text-base text-red-500">{errors.password?.message}</p>
+                <p className="text-sm md:text-base text-red-500">
+                  {errors.password?.message}
+                </p>
                 <div className="absolute top-1/2 right-5 -translate-y-1/2 z-10">
                   {show ? (
                     <FaRegEye
