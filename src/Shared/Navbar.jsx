@@ -222,7 +222,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="mx-5 md:mx-8 2xl:w-[1200px] 2xl:mx-auto lg:py-4 2xl:py-8 border-b-2 border-secondary hidden lg:block">
-        <NavLinks navLinks={navLinks} />
+        <NavLinks navLinks={navLinks}  spanishNavLinks={spanishNavLinks}/>
       </div>
 
       {/* sidebar */}

@@ -1,9 +1,21 @@
+import { useEffect, useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import Title from '../components/Title';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const Services = () => {
+  const { services, setServices } = useState([]);
+  const axiosPublic = useAxiosPublic();
+  useEffect(() => {
+    const response = async () => {
+      const { data } = await axiosPublic.get('/services');
+      setServices(data);
+      console.log(data);
+    };
+    response()
+  }, [axiosPublic, setServices]);
   return (
-    <section className='pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0'>
+    <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
       <Title title={'services'} />
 
       {/* Contents */}
