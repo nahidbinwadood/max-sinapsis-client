@@ -13,16 +13,13 @@ const AboutContainer = ({ item }) => {
             <span>+</span> {!isSpanish ? 'about...' : ' acerca de'}
           </h2>
           <div className="mt-3 md:mt-5 text-sm md:text-base font-primaryMedium tracking-wider text-black/70 space-y-1">
-          {
-  !isSpanish
-    ? item?.sub_title_IINN
-      ? parse(item.sub_title_IINN)
-      : 'Loading...'
-    : item?.sub_title_EESS
-    ? parse(item.sub_title_EESS)
-    : 'Loading...'
-}
-
+            {!isSpanish
+              ? item?.sub_title_IINN
+                ? parse(item.sub_title_IINN)
+                : 'Loading...'
+              : item?.sub_title_EESS
+              ? parse(item.sub_title_EESS)
+              : 'Loading...'}
           </div>
         </div>
       </div>

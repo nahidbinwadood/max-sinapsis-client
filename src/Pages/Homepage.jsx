@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import useAuth from './../Hooks/useAuth';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 import AboutContainer from '../components/AboutContainer';
@@ -12,7 +11,7 @@ const Homepage = () => {
   useEffect(() => {
     const response = async () => {
       const { data } = await axiosPublic.get('/about');
-      setAboutData([data.data[0]]);
+      setAboutData([data?.data[0]]);
     };
     response();
   }, [axiosPublic]);
