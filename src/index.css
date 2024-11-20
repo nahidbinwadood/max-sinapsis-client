@@ -7,33 +7,52 @@
   src: local('Graphite'),
     url('./assets/fonts/Graphite-DEMO-BF65b429d37a96e.otf') format('truetype');
 }
+
 @font-face {
   font-family: 'Regular';
   src: local('Helvetical'),
     url('./assets/fonts/HelveticaUltraLight.otf') format('truetype');
 }
+
 @font-face {
   font-family: 'LightBold';
   src: local('Helvetical'),
     url('./assets/fonts/HelveticaMediumExtended.otf') format('truetype');
 }
+
 @font-face {
   font-family: 'Medium';
   src: local('Helvetical'),
     url('./assets/fonts/HelveticaNeueLTStd-LtEx.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'Bold';
   src: local('Helvetical'),
     url('./assets/fonts/HelveticaNeueLTStd-BdEx.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'Test';
   src: local('Helvetical'),
     url('./assets/fonts/HelveticaNeueLTStd-ThEx.ttf') format('truetype');
 }
 
-.servicesContainer strong {
+strong {
   color: #666633;
-  font-weight: bold;
+
+}
+
+@media screen and (min-width: 768px) {
+  .creativitySection p {
+    color: black;
+
+  }
+
+  .creativitySection strong {
+    font-size: 20px;
+    font-family: Test;
+    font-weight: 500 !important;
+    letter-spacing: 0.05em;
+  }
 }

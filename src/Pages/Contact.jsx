@@ -129,6 +129,10 @@ const Contact = () => {
       console.log(data);
       setLoading(false);
       toast.success('Message sent successfully');
+      // Reset the form
+    setFormData((prevFormData) =>
+      prevFormData.map((field) => ({ ...field, value: '' }))
+    );
     } catch (error) {
       setLoading(false);
       toast.error('Error sending message');

@@ -119,8 +119,6 @@ const Navbar = () => {
     };
   }, [isOpen, language, setIsSpanish]);
 
-  console.log(language);
-
   return (
     <nav>
       <div className="bg-primary px-5 md:px-8 2xl:px-0">

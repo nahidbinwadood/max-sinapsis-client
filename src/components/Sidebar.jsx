@@ -11,7 +11,7 @@ const Sidebar = ({
 }) => {
   const { isSpanish } = useAuth();
   const currentPath = useLocation().pathname;
-  console.log(isSpanish);
+ 
 
   return (
     <>
