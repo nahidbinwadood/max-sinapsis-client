@@ -1,26 +1,35 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 import AboutContainer from '../components/AboutContainer';
 
+const fetchAboutData = async (axiosPublic) => {
+  const { data } = await axiosPublic.get('/about');
+  return [data?.data[0]]; // Return the first item wrapped in an array
+};
+
 const Homepage = () => {
-
-  const [aboutData, setAboutData] = useState([]);
-
   const axiosPublic = useAxiosPublic();
-  useEffect(() => {
-    const response = async () => {
-      const { data } = await axiosPublic.get('/about');
-      setAboutData([data?.data[0]]);
-    };
-    response();
-  }, [axiosPublic]);
 
+  // Use TanStack Query for fetching data
+  const { data: aboutData = [], isLoading, isError, error } = useQuery({
+    queryKey: ['about'], // Unique key for the query
+    queryFn: () => fetchAboutData(axiosPublic), // Fetcher function
+    staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+    retry: 1, // Retry once on failure
+  });
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error loading data: {error.message}</div>;
+  }
 
   return (
     <>
-      {aboutData?.map((item, index) => (
+      {aboutData.map((item, index) => (
         <AboutContainer key={index} item={item} />
       ))}
     </>

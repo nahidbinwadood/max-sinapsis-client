@@ -33,5 +33,7 @@
     url('./assets/fonts/HelveticaNeueLTStd-ThEx.ttf') format('truetype');
 }
 
-
-
+.servicesContainer strong {
+  color: #666633;
+  font-weight: bold;
+}

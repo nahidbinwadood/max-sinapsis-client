@@ -1,130 +1,27 @@
-import { useEffect, useState } from 'react';
-import SectionTitle from '../components/SectionTitle';
-import Title from '../components/Title';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
+import ServicesContainer from '../components/ServicesContainer';
+import Title from '../components/Title';
 
 const Services = () => {
-  const { services, setServices } = useState([]);
   const axiosPublic = useAxiosPublic();
-  useEffect(() => {
-    const response = async () => {
-      const { data } = await axiosPublic.get('/services');
-      setServices(data);
-      console.log(data);
-    };
-    response()
-  }, [axiosPublic, setServices]);
+  const { data: services = [] } = useQuery({
+    queryKey: ['services'],
+    queryFn: async () => {
+      const { data } = await axiosPublic('/services');
+      return data?.data;
+    },
+    staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+    cacheTime: 1000 * 60 * 30, // Retain cache for 30 minutes
+    retry: 1, // Retry once on failure
+  });
+
   return (
     <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
-      <Title title={'services'} />
-
-      {/* Contents */}
-      <div className="ml-6 mt-3 md:mt-5">
-        <div>
-          {/* title */}
-          <SectionTitle title={'concept'} />
-          <div className="mt-2 ml-6 text-[#333] text-sm md:text-base font-primaryMedium tracking-wider text-black/70 space-y-5 md:space-y-6 lg:space-y-8">
-            <p>
-              We create and supply artwork for hotels, offices, residences and
-              spaces where art contributes significantly to create an atmosphere
-              or complete and complement a design concept.
-            </p>
-            <p>
-              We work in diverse techniques, such as watercolor, acrylic, ink
-              drawings, photography, metal, fiberglass. We also transform
-              utilitarian objects into art through ceramics, earthenware or
-              mosaic.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-16">
-          {/* title */}
-          <div>
-            <SectionTitle title={'Step by Step'} />
-            <div>
-              <p className="font-primaryMedium text-sm md:text-base tracking-wider text-[#333] ml-6 mt-1">
-                Our work process can be outlined as follows:
-              </p>
-            </div>
-          </div>
-          <div className="mt-3 text-sm md:text-base md:mt-5 ml-6">
-            <div className="text-[#333] font-primaryMedium tracking-wider space-y-4">
-              <p>
-                <span className="font-primaryLightBold text-secondary">
-                  Initial Consultation,
-                </span>{' '}
-                where we meet with project owners, architects and/or designers,
-                to understand the design concept, and the desired artwork
-                specifications.
-              </p>
-
-              <p className="space-y-5 md:space-y-6 lg:space-y-8">
-                <span className="font-primaryLightBold text-secondary">
-                  Art Proposal,
-                </span>
-                where we present proposed artwork, exclusively created for
-                client&apos;s project, which fulfills the specifications and
-                design concept. The proposed artwork is discussed and evaluated,
-                with the objective of modifying them or of creating new proposed
-                pieces. This process is repeated until client is fully satisfied
-                with the proposed artwork for his project.
-                <span className="block">
-                  Additionally, the art proposal process also involves analysis
-                  and discussion of production and/or reproduction alternatives
-                  and associated costs, such that the final decision is not
-                  based solely on artistic aspects, but also considers cost to
-                  project, without ever jeopardizing quality and durability.
-                </span>
-                <span className="block">
-                  In summary, the idea is to work closely with those responsible
-                  of the project design concept, contributing creatively to
-                  satisfy their specifications, with due consideration to cost
-                  and budgeting.
-                </span>
-              </p>
-
-              <p>
-                <span className="font-primaryLightBold text-secondary">
-                  Production and Delivery Scheduling,
-                </span>
-                where we define with client a delivery schedule as required by
-                the project, to program production of the artwork and insure
-                timely deliveries.
-              </p>
-
-              <p>
-                <span className="font-primaryLightBold text-secondary">
-                  Delivery and Installation Supervision,
-                </span>
-                where we work with client in insuring that all artwork is
-                delivered within specifications and is installed appropriately
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-16">
-          {/* title */}
-          <SectionTitle title={'Step by Step'} />
-
-          <div className="mt-3 md:mt-5 space-y-4 ml-6 text-sm md:text-base">
-            <p className="text-[#333] tracking-wider font-primaryMedium">
-              All artwork chosen by client is exclusive, that is to say, it
-              becomes unique for the project and worked in limited editions
-              only.
-            </p>
-            <p className="text-[#333] tracking-wider font-primaryMedium">
-              Artwork delivered includes a quality guarantee for a period
-              starting on delivery date.
-            </p>
-            <p className="text-[#333] tracking-wider font-primaryMedium">
-              Artwork delivered includes a quality guarantee for a period
-              starting on delivery date.
-            </p>
-          </div>
-        </div>
-      </div>
+      <Title title={'services'} spanish={'SERVICIOS'} />
+      {services?.map((service) => (
+        <ServicesContainer service={service} key={service?._id} />
+      ))}
     </section>
   );
 };
