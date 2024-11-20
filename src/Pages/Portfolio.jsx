@@ -4,6 +4,7 @@ import useAxiosPublic from '../Hooks/useAxiosPublic';
 import useAuth from '../Hooks/useAuth';
 import PortfolioItem from '../components/PortfolioItem';
 import { useQuery } from '@tanstack/react-query';
+import LoadingPage from '../components/LoadingPage';
 
 const fetchPortfolio = async (axiosPublic) => {
   const { data } = await axiosPublic('/get-all-portfolio');
@@ -19,7 +20,12 @@ const Portfolio = () => {
   const [showTab, setShowTab] = useState(false);
 
   // Fetch portfolio data using TanStack Query
-  const { data: allPortfolio = [], isLoading, isError, error } = useQuery({
+  const {
+    data: allPortfolio = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ['portfolio'],
     queryFn: () => fetchPortfolio(axiosPublic),
     staleTime: 1000 * 60 * 5, // Cache for 5 minutes
@@ -59,7 +65,7 @@ const Portfolio = () => {
 
   // Loading state
   if (isLoading) {
-    return <div>Loading portfolio...</div>;
+    return <LoadingPage />;
   }
 
   // Error state
@@ -120,7 +126,7 @@ const Portfolio = () => {
         {/* Left side (Tabs) */}
         <div className="md:w-[35%] lg:w-[25%]">
           <div className="w-full flex items-center justify-between">
-            <h1 className="text-xl md:text-2xl font-primaryBold">
+            <h1 className="text-xl md:text-2xl font-primaryBold lowercase">
               <span>+</span> {!isSpanish ? 'Portfolio' : 'Portafolio'}
             </h1>
 

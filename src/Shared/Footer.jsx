@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { CaptionSvg } from '../components/SvgContainer';
+import useAuth from '../Hooks/useAuth';
 
 const Footer = () => {
+  const { isSpanish } = useAuth();
   const navLinks = [
     {
       title: 'Home',
@@ -28,6 +30,33 @@ const Footer = () => {
       path: '/contact',
     },
   ];
+
+  const spanishNavLinks = [
+    {
+      title: 'Hogar',
+      path: '/',
+    },
+    {
+      title: 'Servicios',
+      path: '/services',
+    },
+    {
+      title: 'Proyectos',
+      path: '/projects',
+    },
+    {
+      title: 'Portafolio',
+      path: '/portfolio',
+    },
+    {
+      title: 'Creatividad',
+      path: '/creativity',
+    },
+    {
+      title: 'Contacto',
+      path: '/contact',
+    },
+  ];
   return (
     <footer className="bg-secondary py-8 sm:py-10 md:py-12 lg:py-14 xl:py-16 overflow-x-hidden">
       {/* top part */}
@@ -49,11 +78,17 @@ const Footer = () => {
         </div>
         <div className="mt-5 md:mt-7 lg:mt-8">
           <ul className="flex text-sm md:text-base flex-col md:flex-row gap-3 md:gap-5 items-center justify-between 2xl:gap-24 lg:text-lg tracking-wider">
-            {navLinks.map((link) => (
-              <li key={link?.title}>
-                <Link to={link?.path}>{link?.title}</Link>
-              </li>
-            ))}
+            {!isSpanish
+              ? navLinks.map((link) => (
+                  <li key={link?.title}>
+                    <Link to={link?.path}>{link?.title}</Link>
+                  </li>
+                ))
+              : spanishNavLinks.map((link) => (
+                  <li key={link?.title}>
+                    <Link to={link?.path}>{link?.title}</Link>
+                  </li>
+                ))}
           </ul>
         </div>
 
@@ -61,7 +96,11 @@ const Footer = () => {
         <div className="flex items-center justify-center">
           <span className="flex items-center gap-3 justify-center text-sm md:text-base">
             <CaptionSvg />
-            <span className="opacity-85">2024.All rights reserved.</span>
+            <span className="opacity-85">
+              {!isSpanish
+                ? '2024.All rights reserved.'
+                : '2024.Todos los derechos reservados.'}
+            </span>
           </span>
         </div>
       </div>

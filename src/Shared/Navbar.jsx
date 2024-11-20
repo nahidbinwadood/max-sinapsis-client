@@ -16,7 +16,8 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const { setIsSpanish } = useAuth();
   const [language, setLanguage] = useState('EN');
-  const [showLanguage, setShowLanguage] = useState(false);
+  const [showLanguage, setShowLanguage] = useState(false); // Main language dropdown
+  const [showLanguageHamburger, setShowLanguageHamburger] = useState(false); // Hamburger language dropdown
   const languageRef = useRef(null);
   const sidebarRef = useRef();
   const hamburgerRef = useRef();
@@ -29,6 +30,7 @@ const Navbar = () => {
     {
       name: 'español - Es',
       code: 'ES',
+      svg: <SpainSvg />,
     },
   ];
   const navLinks = [
@@ -83,6 +85,7 @@ const Navbar = () => {
       path: '/contact',
     },
   ];
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -90,12 +93,12 @@ const Navbar = () => {
       document.body.style.overflow = 'auto';
     }
 
-    //
-    if (language == 'EN') {
+    if (language === 'EN') {
       setIsSpanish(false);
-    } else if (language == 'ES') {
+    } else if (language === 'ES') {
       setIsSpanish(true);
     }
+
     const handleClickOutside = (event) => {
       if (languageRef.current && !languageRef.current.contains(event.target)) {
         setShowLanguage(false);
@@ -110,40 +113,19 @@ const Navbar = () => {
       }
     };
 
-    //adjust the slider:
-    const swiper = document.querySelector('.swiper');
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'hidden';
-      if (swiper) {
-        swiper.style.zIndex = '-1';
-      }
-    } else {
-      document.body.style.overflow = 'auto';
-      if (swiper) {
-        swiper.style.zIndex = '1';
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    // Add event listener when component mounts
     document.addEventListener('mousedown', handleClickOutside);
-
-    // Clean up event listener when component unmounts
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, language, setIsSpanish]);
+
+  console.log(language);
+
   return (
-    <nav className="">
+    <nav>
       <div className="bg-primary px-5 md:px-8 2xl:px-0">
         <div className="container mx-auto flex items-center justify-between py-4 md:py-6 lg:py-7">
-          {/* logo */}
+          {/* Logo */}
           <div>
             <Link to="/">
               <img
@@ -154,15 +136,61 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* hamburger */}
-          <div ref={hamburgerRef} className="lg:hidden">
-            <Hamburger
-              color="#666633"
-              size={20}
-              toggled={isOpen}
-              toggle={setOpen}
-            />
+          {/* Hamburger */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <div className="relative">
+              <div
+                onClick={() => setShowLanguageHamburger(!showLanguageHamburger)}
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                {language === 'EN' ? <UnitedStatesSvg /> : <SpainSvg />}
+              </div>
+
+              {/* Hamburger Language Flags */}
+              <div
+                className={`bg-secondary text-white font-primaryMedium p-4 rounded-lg shadow-lg absolute min-w-44 -right-10 ${
+                  showLanguageHamburger
+                    ? 'translate-y-3 opacity-100 transition-transform duration-300 z-10'
+                    : 'translate-y-5 opacity-0 transition-transform duration-300 -z-10'
+                }`}
+              >
+                <div ref={languageRef} className="flex flex-col gap-2">
+                  {languages.map((lang) => (
+                    <div key={lang.code}>
+                      <input
+                        type="radio"
+                        name="language"
+                        id={lang.name}
+                        className="peer hidden"
+                        onChange={() => {}}
+                        checked={language === lang.code}
+                      />
+                      <label
+                        onClick={() => {
+                          setLanguage(lang.code);
+                          setShowLanguageHamburger(false); // Close dropdown after selection
+                        }}
+                        htmlFor={lang.name}
+                        className={`flex items-center gap-2 cursor-pointer text-sm font-primaryMedium`}
+                      >
+                        {lang.svg} <span>{lang.name}</span>
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div ref={hamburgerRef} className="lg:hidden">
+              <Hamburger
+                color="#666633"
+                size={20}
+                toggled={isOpen}
+                toggle={setOpen}
+              />
+            </div>
           </div>
+
+          {/* Desktop Language Selector */}
           <div className="lg:flex items-center gap-6 text-secondary hidden">
             <Link to="/" className="text-2xl xl:text-3xl font-primaryRegular">
               ANALAURA
@@ -173,7 +201,7 @@ const Navbar = () => {
                 <HomeIconSvg />
               </Link>
 
-              {/* language */}
+              {/* Language */}
               <div className="relative">
                 <div
                   onClick={() => setShowLanguage(!showLanguage)}
@@ -183,9 +211,9 @@ const Navbar = () => {
                   <DownArrowSvg />
                 </div>
 
-                {/* flags */}
+                {/* Desktop Language Flags */}
                 <div
-                  className={`bg-secondary text-white font-primaryMedium  p-4 rounded-lg shadow-lg absolute min-w-44 -right-10 ${
+                  className={`bg-secondary text-white font-primaryMedium p-4 rounded-lg shadow-lg absolute min-w-44 -right-10 ${
                     showLanguage
                       ? 'translate-y-3 opacity-100 transition-transform duration-300 z-10'
                       : 'translate-y-5 opacity-0 transition-transform duration-300 -z-10'
@@ -193,24 +221,24 @@ const Navbar = () => {
                 >
                   <div ref={languageRef} className="flex flex-col gap-2">
                     {languages.map((lang) => (
-                      <div key={lang?.name}>
+                      <div key={lang.code}>
                         <input
                           type="radio"
                           name="language"
-                          id={lang?.name}
+                          id={lang.name}
                           className="peer hidden"
                           onChange={() => {}}
-                          checked={language == lang?.code}
+                          checked={language === lang.code}
                         />
                         <label
                           onClick={() => {
                             setLanguage(lang.code);
-                            setShowLanguage(false);
+                            setShowLanguage(false); // Close dropdown after selection
                           }}
-                          htmlFor={lang?.name}
-                          className="flex items-center gap-2 cursor-pointer before:content-[''] before:size-4 before:bg-white before:rounded-full peer-checked:before:bg-secondary   before:border before:border-white peer-checked:before:border-[4px]"
+                          htmlFor={lang.name}
+                          className="flex items-center gap-2 cursor-pointer before:content-[''] before:size-4 before:bg-white before:rounded-full peer-checked:before:bg-secondary before:border before:border-white peer-checked:before:border-[4px] text-sm"
                         >
-                          <span>{lang?.name}</span>
+                          {lang.svg} <span>{lang.name}</span>
                         </label>
                       </div>
                     ))}
@@ -221,12 +249,13 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      {/* Navbar Links */}
       <div className="mx-5 md:mx-8 2xl:w-[1200px] 2xl:mx-auto lg:py-4 2xl:py-8 border-b-2 border-secondary hidden lg:block">
-        <NavLinks navLinks={navLinks}  spanishNavLinks={spanishNavLinks}/>
+        <NavLinks navLinks={navLinks} spanishNavLinks={spanishNavLinks} />
       </div>
 
-      {/* sidebar */}
-
+      {/* Sidebar */}
       <Sidebar
         sidebarRef={sidebarRef}
         isOpen={isOpen}

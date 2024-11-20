@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 
 const AboutContainer = ({ item }) => {
   const { isSpanish } = useAuth();
-  console.log(item);
+ 
   return (
     <section className="mt-5 sm:mt-6 md:mt-8 lg:mt-10 flex flex-col md:flex-row gap-8 md:gap-10 lg:gap-12 px-5 md:px-8 pb-10 md:pb-20 lg:pb-44">
       <div className="md:w-[60%]">

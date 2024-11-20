@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 import AboutContainer from '../components/AboutContainer';
+import LoadingPage from '../components/LoadingPage';
 
 const fetchAboutData = async (axiosPublic) => {
   const { data } = await axiosPublic.get('/about');
@@ -12,7 +13,12 @@ const Homepage = () => {
   const axiosPublic = useAxiosPublic();
 
   // Use TanStack Query for fetching data
-  const { data: aboutData = [], isLoading, isError, error } = useQuery({
+  const {
+    data: aboutData = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ['about'], // Unique key for the query
     queryFn: () => fetchAboutData(axiosPublic), // Fetcher function
     staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
@@ -20,7 +26,11 @@ const Homepage = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <LoadingPage />
+      </>
+    );
   }
 
   if (isError) {

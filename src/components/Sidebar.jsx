@@ -9,8 +9,9 @@ const Sidebar = ({
   sidebarRef,
   spanishNavLinks,
 }) => {
-  const { isSpanish, setIsSpanish } = useAuth();
+  const { isSpanish } = useAuth();
   const currentPath = useLocation().pathname;
+  console.log(isSpanish);
 
   return (
     <>
@@ -89,36 +90,6 @@ const Sidebar = ({
                 </li>
               ))}
         </ul>
-
-        {/* language */}
-        <div className=" lg:flex flex-col mt-8 gap-5 text-sm hidden">
-          <h4
-            onClick={() => {
-              setIsSpanish(false);
-              setOpen(false);
-            }}
-            className={`border ${
-              !isSpanish
-                ? 'border-secondary font-primaryBold'
-                : 'border-secondary/50 font-primaryTest'
-            } px-2 rounded py-1 w-32 flex items-center justify-center`}
-          >
-            English
-          </h4>
-          <h5
-            onClick={() => {
-              setIsSpanish(true);
-              setOpen(false);
-            }}
-            className={`border ${
-              isSpanish
-                ? 'border-secondary font-primaryBold'
-                : 'border-secondary/50 font-primaryTest'
-            } px-2 rounded py-1 w-32 flex items-center justify-center`}
-          >
-            Spanish
-          </h5>
-        </div>
       </div>
     </>
   );

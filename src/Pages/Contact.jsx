@@ -8,9 +8,9 @@ import {
 import Title from '../components/Title';
 import useAuth from '../Hooks/useAuth';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { ImSpinner9 } from 'react-icons/im';
+import { ImSpinner3 } from 'react-icons/im';
 
 const formNames = [
   {
@@ -83,11 +83,13 @@ const Contact = () => {
   const [formData, setFormData] = useState(formNames);
   const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(false);
+
+  // Fetch contact information
   const fetchInfo = async () => {
     const { data } = await axiosPublic('/getcontact-address');
     return data?.data;
   };
-  //fetch contact information:
+
   const {
     data: contactInfo,
     isLoading,
@@ -95,21 +97,13 @@ const Contact = () => {
     error,
   } = useQuery({
     queryKey: ['contactInfo'],
-    queryFn: () => fetchInfo(axiosPublic),
-    staleTime: Infinity, // Cache indefinitely (data won't refetch automatically)
-    cacheTime: Infinity, // Cache persists indefinitely
-    retry: 1, // Retry once on failure
+    queryFn: fetchInfo,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    retry: 1,
   });
 
-  const locationArray = contactInfo?.location.split('\\n');
-
-  // Define the mutation for form submission
-  const { mutate } = useMutation({
-    mutationFn: async (formData) => {
-      const response = await axiosPublic.post('/send-message', formData);
-      return response.data;
-    },
-  });
+  const locationArray = contactInfo?.location?.split('\\n') || [];
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -130,49 +124,64 @@ const Contact = () => {
       return acc;
     }, {});
 
-    console.log('Form Data:', dataObject);
-
     try {
-      mutate(dataObject);
+      const { data } = await axiosPublic.post('/send-message', dataObject);
+      console.log(data);
       setLoading(false);
       toast.success('Message sent successfully');
     } catch (error) {
-      toast.error(error);
+      setLoading(false);
+      toast.error('Error sending message');
+      console.error(error);
     }
   };
 
   return (
     <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
-      <Title title={'contact'} spanish={'Contacto'} />
+      <Title title="contact" spanish="Contacto" />
 
       {/* Contact Information and Form */}
       <div className="mt-5 md:mt-8 lg:mt-10 flex flex-col md:flex-row gap-6">
         {/* Left Side: Contact Info */}
-        <div className="md:w-[40%] xl:w-[30%] h-fit lg:pb-16 bg-secondary rounded-lg p-5 xl:p-8 text-white font-primaryTest tracking-wider flex flex-col gap-3 md:gap-6">
-          <div className="flex gap-3 md:gap-5">
-            <LocationSvg />
-            <div className="text-sm md:text-base ">
-              {locationArray?.map((location) => (
-                <p key={location}>{location}</p>
-              ))}
+        <div className="md:w-[40%] xl:w-[30%] h-fit min-h-[280px] lg:min-h-[320px] bg-secondary rounded-lg p-5 xl:p-8 text-white font-primaryTest tracking-wider flex flex-col gap-3 md:gap-6">
+          {isLoading ? (
+            <div className="flex flex-1 items-center justify-center">
+              <ImSpinner3 className="text-white text-3xl animate-spin" />
             </div>
-          </div>
-          <div className="flex gap-3 md:gap-5 text-sm md:text-base   items-center">
-            <PhoneSvg />
-            <a href={`tel:${contactInfo?.telephone}`}>
-              {contactInfo?.telephone}
-            </a>
-          </div>
-          <div className="flex gap-3 md:gap-5 text-sm md:text-base  items-center">
-            <TelephoneSvg />
-            <a href={`tel:${contactInfo?.mobile}`}>{contactInfo?.mobile}</a>
-          </div>
-          <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
-            <div className="flex-shrink-0">
-              <EmailSvg />
+          ) : isError ? (
+            <div className="flex flex-1 items-center justify-center">
+              <p className="text-red-500 text-center">
+                Error loading contact info: {error.message}
+              </p>
             </div>
-            <a href="mailto:alaura@projectartwork.com">{contactInfo?.email}</a>
-          </div>
+          ) : (
+            <>
+              <div className="flex gap-3 md:gap-5">
+                <LocationSvg />
+                <div className="text-sm md:text-base">
+                  {locationArray.map((location, index) => (
+                    <p key={index}>{location}</p>
+                  ))}
+                </div>
+              </div>
+              <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
+                <PhoneSvg />
+                <a href={`tel:${contactInfo?.telephone}`}>
+                  {contactInfo?.telephone}
+                </a>
+              </div>
+              <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
+                <TelephoneSvg />
+                <a href={`tel:${contactInfo?.mobile}`}>{contactInfo?.mobile}</a>
+              </div>
+              <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
+                <EmailSvg />
+                <a href={`mailto:${contactInfo?.email}`}>
+                  {contactInfo?.email}
+                </a>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Right Side: Contact Form */}
@@ -188,7 +197,7 @@ const Contact = () => {
                 {field.type === 'textarea' ? (
                   <textarea
                     rows={5}
-                    className="border border-secondary text-sm md:text-base rounded-lg px-6  py-4 md:py-5 w-full focus:outline-none"
+                    className="border border-secondary text-sm md:text-base rounded-lg px-6 py-4 md:py-5 w-full focus:outline-none"
                     placeholder={!isSpanish ? field.placeholder : field.spanish}
                     name={field.name}
                     value={field.value}
@@ -212,10 +221,10 @@ const Contact = () => {
             <div className="md:pt-5">
               <button
                 type="submit"
-                className="bg-secondary py-2.5 md:py-3.5 text-white w-full rounded-lg border border-secondary hover:bg-transparent hover:text-secondary transition duration-500"
+                className="bg-secondary flex items-center justify-center py-2.5 md:py-3.5 text-white w-full rounded-lg border border-secondary hover:bg-transparent hover:text-secondary transition duration-500"
               >
                 {loading ? (
-                  <ImSpinner9 className="size-6 animate-spin" />
+                  <ImSpinner3 className="size-6 animate-spin" />
                 ) : isSpanish ? (
                   'Enviar'
                 ) : (
