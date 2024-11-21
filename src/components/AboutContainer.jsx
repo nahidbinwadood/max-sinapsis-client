@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import useAuth from '../Hooks/useAuth';
 import parse from 'html-react-parser';
+import useAuth from '../Hooks/useAuth';
 
 const AboutContainer = ({ item }) => {
   const { isSpanish } = useAuth();
- 
+
   return (
     <section className="mt-5 sm:mt-6 md:mt-8 lg:mt-10 flex flex-col md:flex-row gap-8 md:gap-10 lg:gap-12 px-5 md:px-8 pb-10 md:pb-20 lg:pb-44">
       <div className="md:w-[60%]">
@@ -25,11 +25,7 @@ const AboutContainer = ({ item }) => {
       </div>
       <div className="md-[40%]">
         <div className="h-[350px] md:h-[520px]">
-          <img
-            className="h-full w-full object-cover"
-            src={item?.image}
-            alt=""
-          />
+          <img className='h-full w-full object-cover' src={item.image} alt="Example Image" crossOrigin="anonymous" />
         </div>
       </div>
     </section>

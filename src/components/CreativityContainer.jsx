@@ -21,6 +21,7 @@ const CreativityContainer = ({ creativity }) => {
               className="w-full h-full object-cover"
               src={creativity?.image}
               alt=""
+              crossOrigin="anonymous"
             />
           </div>
         </div>

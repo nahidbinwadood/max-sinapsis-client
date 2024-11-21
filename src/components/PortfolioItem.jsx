@@ -49,6 +49,7 @@ const PortfolioItem = ({ item }) => {
                 src={image}
                 alt={`Portfolio image ${index + 1}`}
                 className="w-full h-full object-cover"
+                crossOrigin="anonymous"
               />
             </div>
           </SwiperSlide>
