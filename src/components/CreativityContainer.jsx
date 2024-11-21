@@ -3,20 +3,28 @@ import useAuth from '../Hooks/useAuth';
 import parse from 'html-react-parser';
 const CreativityContainer = ({ creativity }) => {
   const { isSpanish } = useAuth();
-  console.log(creativity);
+  console.log(creativity?.image_position);
   return (
     <div>
-      <div className="mt-5 flex flex-col md:flex-row gap-10 items-stretch">
+      <div
+        className={`mt-5 flex flex-col ${
+          creativity?.image_position === 'left'
+            ? 'md:flex-row'
+            : creativity?.image_position === 'right'
+            ? 'md:flex-row-reverse'
+            : 'md:flex-row'
+        } gap-10 items-stretch`}
+      >
         <div>
           <div className="md:w-[320px] h-[350px] 2xl:h-full 2xl:max-h-[450px] flex-shrink-0">
             <img
               className="w-full h-full object-cover"
-              src="https://i.postimg.cc/3JH8tXbc/dp.jpg"
+              src={creativity?.image}
               alt=""
             />
           </div>
         </div>
-        <div>
+        <div className='flex flex-col justify-start items-start w-full'>
           {/* title */}
           <div className="flex items-center gap-3">
             <div className="bg-secondary size-2 sm:size-3 lg:size-[14px] rounded-full" />
@@ -25,10 +33,10 @@ const CreativityContainer = ({ creativity }) => {
             </h2>
           </div>
 
-          <div className="font-primaryTest text-secondary md:text-lg ml-5 mt-5 md:mt-8 lg:mt-10 creativitySection">
+          <div className={`font-primaryTest text-secondary md:text-lg ${ creativity?.image_position === 'left'?"ml-5" :"ml-0"}  mt-3 creativitySection`}>
             {!isSpanish
-              ? creativity?.sub_title_EESS
-                ? parse(creativity.sub_title_EESS)
+              ? creativity?.sub_title_IINN
+                ? parse(creativity.sub_title_IINN)
                 : 'Loading...'
               : creativity?.sub_title_EESS
               ? parse(creativity.sub_title_EESS)
@@ -47,8 +55,6 @@ const CreativityContainer = ({ creativity }) => {
           ? parse(creativity.content_EESS)
           : 'Loading...'}
       </div>
-
-
     </div>
   );
 };
