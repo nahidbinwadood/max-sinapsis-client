@@ -5,8 +5,8 @@ import AboutContainer from '../components/AboutContainer';
 import LoadingPage from '../components/LoadingPage';
 
 const fetchAboutData = async (axiosPublic) => {
-  const { data } = await axiosPublic.get('/about',);
-  return [data?.data[0]]; // Return the first item wrapped in an array
+  const response = await axiosPublic.get('/about',);
+  return [response?.data?.data[0]]; // Return the first item wrapped in an array
 };
 
 const Homepage = () => {
