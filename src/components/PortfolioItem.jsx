@@ -78,6 +78,7 @@ const PortfolioItem = ({ item }) => {
               src={image}
               alt={`Thumbnail image ${index + 1}`}
               className="w-full h-full object-cover cursor-pointer"
+               crossOrigin="anonymous"
             />
           </SwiperSlide>
         ))}
