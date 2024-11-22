@@ -8,7 +8,10 @@ import LoadingPage from '../components/LoadingPage';
 
 const fetchPortfolio = async (axiosPublic) => {
   const { data } = await axiosPublic('/get-all-portfolio');
-  return data?.data;
+  const updatedPortfolio = data?.data.sort(
+    (a, b) => a.serial_number - b.serial_number
+  );
+  return updatedPortfolio;
 };
 
 const Portfolio = () => {
@@ -73,6 +76,7 @@ const Portfolio = () => {
     return <div>Error loading portfolio: {error.message}</div>;
   }
 
+  console.log(allPortfolio);
   return (
     <section className="min-h-[100vh] mt-5 sm:mt-6 md:mt-8 lg:mt-10">
       <style>

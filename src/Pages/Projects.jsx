@@ -28,7 +28,7 @@ const Projects = () => {
     cacheTime: 1000 * 60 * 30, // Cache for 30 minutes
     retry: 1, // Retry once on failure
   });
-
+console.log(projects);
   if (isLoading) {
     return <LoadingPage />;
   }

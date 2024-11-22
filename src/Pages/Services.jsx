@@ -17,7 +17,10 @@ const Services = () => {
     queryKey: ['services'], // Unique query key for caching
     queryFn: async () => {
       const { data } = await axiosPublic('/services');
-      return data?.data;
+      const updatedServices = data?.data?.sort(
+        (a, b) => a.serial_number - b.serial_number
+      );
+      return updatedServices;
     },
     staleTime: 1000 * 60 * 5, // Cache for 5 minutes
     cacheTime: 1000 * 60 * 30, // Retain cache for 30 minutes
@@ -38,6 +41,8 @@ const Services = () => {
       </section>
     );
   }
+
+  console.log(services);
 
   return (
     <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">

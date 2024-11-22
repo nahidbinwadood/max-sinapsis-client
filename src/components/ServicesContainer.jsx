@@ -4,7 +4,7 @@ import SectionTitle from './SectionTitle';
 import parse from 'html-react-parser';
 
 const ServicesContainer = ({ service }) => {
-  console.log(service);
+  // console.log(service);
   const { isSpanish } = useAuth();
   return (
     <>
