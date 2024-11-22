@@ -86,12 +86,12 @@ const PortfolioItem = ({ item }) => {
 
       {/* Details */}
       <div className="pb-10">
-        <h3 className="text-xl md:text-2xl font-primaryTest mt-5 md:mt-7 lg:mt-10 text-secondary">
+        <h3 className="text-xl md:text-2xl font-primaryTest tracking-wide mt-5 md:mt-7 lg:mt-10 text-secondary">
           {!isSpanish
             ? item?.details?.sub_Title_IINN || 'No description available'
             : item?.details?.sub_Title_EESS || 'No description available'}
         </h3>
-        <p className="mt-3 md:mt-5 text-sm md:text-base lg:text-lg font-primaryTest text-secondary">
+        <p className="mt-3 md:mt-5 text-sm md:text-base lg:text-lg font-primaryTest tracking-wide text-secondary">
           {!isSpanish
             ? item?.details?.sub_desc_IINN || 'No description available'
             : item?.details?.sub_desc_EESS || 'No description available'}

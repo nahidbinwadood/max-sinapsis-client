@@ -40,18 +40,25 @@
 
 strong {
   color: #666633;
-
+  font-weight: bolder !important;
 }
 
 @media screen and (min-width: 768px) {
-  .creativitySection p {
+  strong {
+    font-family: Test;
+    font-weight: bolder !important;
+    letter-spacing: 0.05em;
+  }
+
+  .creativitySection p,
+  .creativitySection p span {
     color: black;
   }
 
-  .creativitySection strong {
-    font-size: 20px;
+  .creativitySection p strong span {
     font-family: Test;
-    font-weight: 500 !important;
+    color: #666633;
+    font-weight: bolder !important;
     letter-spacing: 0.05em;
   }
 }
