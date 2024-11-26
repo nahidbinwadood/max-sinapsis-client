@@ -25,6 +25,8 @@ const Homepage = () => {
     retry: 1, // Retry once on failure
   });
 
+
+  console.log(aboutData);
   if (isLoading) {
     return (
       <>
