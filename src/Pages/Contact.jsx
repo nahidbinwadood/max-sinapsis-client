@@ -87,7 +87,7 @@ const Contact = () => {
   // Fetch contact information
   const fetchInfo = async () => {
     const { data } = await axiosPublic('/getcontact-address');
-    return data?.data;
+    return data?.data[0];
   };
 
   const {
@@ -103,7 +103,7 @@ const Contact = () => {
     retry: 1,
   });
 
-  const locationArray = contactInfo?.location?.split('\\n') || [];
+  const locationArray = contactInfo?.address?.split('\\n') || [];
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -139,7 +139,7 @@ const Contact = () => {
       console.error(error);
     }
   };
-
+console.log(contactInfo);
   return (
     <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
       <Title title="contact" spanish="Contacto" />
@@ -170,13 +170,13 @@ const Contact = () => {
               </div>
               <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
                 <PhoneSvg />
-                <a href={`tel:${contactInfo?.telephone}`}>
-                  {contactInfo?.telephone}
+                <a href={`tel:${contactInfo?.mobile}`}>
+                  {contactInfo?.mobile}
                 </a>
               </div>
               <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
                 <TelephoneSvg />
-                <a href={`tel:${contactInfo?.mobile}`}>{contactInfo?.mobile}</a>
+                <a href={`tel:${contactInfo?.teliphone}`}>{contactInfo?.teliphone}</a>
               </div>
               <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
                 <EmailSvg />

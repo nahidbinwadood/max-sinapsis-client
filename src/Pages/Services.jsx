@@ -18,7 +18,7 @@ const Services = () => {
     queryFn: async () => {
       const { data } = await axiosPublic('/services');
       const updatedServices = data?.data?.sort(
-        (a, b) => a.serial_number - b.serial_number
+        (a, b) => a.position - b.position
       );
       return updatedServices;
     },
@@ -48,7 +48,7 @@ const Services = () => {
     <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
       <Title title={'services'} spanish={'SERVICIOS'} />
       {services?.length > 0 ? (
-        services.map((service,idx) => (
+        services.map((service, idx) => (
           <ServicesContainer service={service} key={idx} />
         ))
       ) : (

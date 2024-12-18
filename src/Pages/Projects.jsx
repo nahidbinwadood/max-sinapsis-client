@@ -8,7 +8,7 @@ const fetchProjects = async ({ queryKey }) => {
   const axiosPublic = queryKey[1]; // Extract axios instance from queryKey
   const { data } = await axiosPublic('/projects-list');
   return data?.data.sort(
-    (a, b) => parseInt(a.serial_number) - parseInt(b.serial_number)
+    (a, b) => parseInt(a.position) - parseInt(b.position)
   );
 };
 
