@@ -123,9 +123,9 @@ const Contact = () => {
       acc[field.name] = field.value;
       return acc;
     }, {});
-
+    dataObject.messageType = 'Inquiry';
     try {
-      const { data } = await axiosPublic.post('/send-message', dataObject);
+      const { data } = await axiosPublic.post('/send-messages', dataObject);
       console.log(data);
       setLoading(false);
       toast.success('Message sent successfully');
@@ -139,7 +139,7 @@ const Contact = () => {
       console.error(error);
     }
   };
-  console.log(contactInfo);
+
   return (
     <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
       <Title title="contact" spanish="Contacto" />
@@ -179,7 +179,7 @@ const Contact = () => {
                 </a>
               </div>
               <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
-                <div className='pt-1'>
+                <div className="pt-1">
                   <EmailSvg />
                 </div>
                 <a href={`mailto:${contactInfo?.email}`}>
