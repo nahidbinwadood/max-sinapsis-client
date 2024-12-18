@@ -5,8 +5,8 @@ import AboutContainer from '../components/AboutContainer';
 import LoadingPage from '../components/LoadingPage';
 
 const fetchAboutData = async (axiosPublic) => {
-  const response = await axiosPublic.get('/about',);
-  return [response?.data]; // Return the first item wrapped in an array
+  const { data } = await axiosPublic.get('/about');
+  return [data?.data[0]]; // Return the first item wrapped in an array
 };
 
 const Homepage = () => {
@@ -21,9 +21,7 @@ const Homepage = () => {
   } = useQuery({
     queryKey: ['about'], // Unique key for the query
     queryFn: () => fetchAboutData(axiosPublic), // Fetcher function
-
   });
-
 
   console.log(aboutData);
   if (isLoading) {

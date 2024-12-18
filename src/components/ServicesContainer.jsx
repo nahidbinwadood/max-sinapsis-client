@@ -4,27 +4,37 @@ import SectionTitle from './SectionTitle';
 import parse from 'html-react-parser';
 
 const ServicesContainer = ({ service }) => {
-  // console.log(service);
   const { isSpanish } = useAuth();
+
+  // Helper function to clean and parse descriptions
+  const renderDescription = (description) => {
+    if (!description) return <p>Loading...</p>;
+
+    // Preserve valid paragraphs and parse HTML
+    return description
+      .split(/<\/p>/gi) // Split at closing </p> tags
+      .map((para) => para.trim()) // Trim extra spaces
+      .filter((para) => para && para !== '&nbsp;') // Exclude empty or &nbsp; entries
+      .map((para, index) => <p key={index}>{parse(`<p>${para}</p>`)}</p>); // Parse HTML with <p> wrapper
+  };
+
   return (
-    <>
-      {/* Contents */}
-      <div className="ml-6 mt-3 md:mt-5 mb-6 md:mb-8 lg:mb-10 servicesContainer">
-        <div>
-          {/* title */}
-          <SectionTitle title={service?.title_IINN} spanish={service?.title_EESS} />
-          <div className="mt-2 ml-6 text-[#333] text-sm md:text-base font-primaryMedium tracking-wider text-black/70 space-y-1">
-            {!isSpanish
-              ? service?.description_IINN
-                ? parse(service.description_IINN)
-                : 'Loading...'
-              : service?.description_EESS
-              ? parse(service.description_EESS)
-              : 'Loading...'}
-          </div>
+    <div className="ml-6 mt-3 md:mt-5 mb-6 md:mb-8 lg:mb-10 servicesContainer">
+      <div>
+        {/* Section Title */}
+        <SectionTitle
+          title={service?.title_iinn}
+          spanish={service?.title_eess}
+        />
+
+        {/* Description */}
+        <div className="mt-5 ml-6 text-[#333] text-sm md:text-base font-primaryMedium tracking-wider text-black/70">
+          {isSpanish
+            ? renderDescription(service?.description_eess)
+            : renderDescription(service?.description_iinn)}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

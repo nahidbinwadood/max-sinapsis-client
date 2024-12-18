@@ -48,8 +48,8 @@ const Services = () => {
     <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
       <Title title={'services'} spanish={'SERVICIOS'} />
       {services?.length > 0 ? (
-        services.map((service) => (
-          <ServicesContainer service={service} key={service?._id} />
+        services.map((service,idx) => (
+          <ServicesContainer service={service} key={idx} />
         ))
       ) : (
         <div>No services available at the moment.</div>
