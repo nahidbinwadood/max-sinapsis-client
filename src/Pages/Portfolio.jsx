@@ -8,9 +8,7 @@ import LoadingPage from '../components/LoadingPage';
 
 const fetchPortfolio = async (axiosPublic) => {
   const { data } = await axiosPublic('/get-all-portfolio');
-  const updatedPortfolio = data?.data.sort(
-    (a, b) => a.serial_number - b.serial_number
-  );
+  const updatedPortfolio = data?.data.sort((a, b) => a.position - b.position);
   return updatedPortfolio;
 };
 
@@ -178,13 +176,13 @@ const Portfolio = () => {
                 <button
                   onClick={() => setActiveTab(tab)}
                   className={`text-xl lowercase py-1 ${
-                    activeTab?._id === tab?._id
+                    activeTab?.id === tab?.id
                       ? 'text-black font-primaryBold'
                       : 'text-[#666633] font-primaryTest'
                   }`}
                   key={index}
                 >
-                  {isSpanish ? tab?.title_EESS : tab?.title_IINN}
+                  {isSpanish ? tab?.title_IINN : tab?.title_EESS}
                 </button>
               ))}
             </div>
