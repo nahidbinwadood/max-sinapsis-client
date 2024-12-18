@@ -21,11 +21,10 @@ const CreativityContainer = ({ creativity }) => {
               className="w-full h-full object-cover"
               src={creativity?.image}
               alt=""
-
             />
           </div>
         </div>
-        <div className='flex flex-col justify-start items-start w-full'>
+        <div className="flex flex-col justify-start items-start w-full">
           {/* title */}
           <div className="flex items-center gap-3">
             <div className="bg-secondary size-2 sm:size-3 lg:size-[14px] rounded-full" />
@@ -34,7 +33,11 @@ const CreativityContainer = ({ creativity }) => {
             </h2>
           </div>
 
-          <div className={`font-primaryTest text-secondary md:text-lg ${ creativity?.image_position === 'left'?"ml-5" :"ml-0"}  mt-3 creativitySection`}>
+          <div
+            className={`font-primaryTest text-secondary md:text-lg ${
+              creativity?.image_position === 'Left' ? 'ml-5' : 'ml-0'
+            }  mt-3 creativitySection`}
+          >
             {isSpanish
               ? creativity?.sub_title_IINN
                 ? parse(creativity.sub_title_IINN)
@@ -47,7 +50,7 @@ const CreativityContainer = ({ creativity }) => {
       </div>
 
       {/* exhibits */}
-      <div className="mt-8 md:mt-10 creativitySection md:text-lg tracking-wide lg:mt-12 xl:mt-14 2xl:mt-16 font-primaryTest space-y-2 ml-5 2xl:ml-0">
+      <div className="mt-8 md:mt-10 creativitySection md:text-lg tracking-wide lg:mt-12 xl:mt-14 2xl:mt-16 font-primaryTest ml-5 2xl:ml-0">
         {isSpanish
           ? creativity?.content_IINN
             ? parse(creativity.content_IINN)

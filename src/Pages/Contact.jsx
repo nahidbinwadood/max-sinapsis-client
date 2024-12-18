@@ -130,16 +130,16 @@ const Contact = () => {
       setLoading(false);
       toast.success('Message sent successfully');
       // Reset the form
-    setFormData((prevFormData) =>
-      prevFormData.map((field) => ({ ...field, value: '' }))
-    );
+      setFormData((prevFormData) =>
+        prevFormData.map((field) => ({ ...field, value: '' }))
+      );
     } catch (error) {
       setLoading(false);
       toast.error('Error sending message');
       console.error(error);
     }
   };
-console.log(contactInfo);
+  console.log(contactInfo);
   return (
     <section className="pb-12 md:pb-16 lg:pb-24 xl:pb-28 2xl:pb-32 px-5 md:px-8 2xl:px-0">
       <Title title="contact" spanish="Contacto" />
@@ -147,7 +147,7 @@ console.log(contactInfo);
       {/* Contact Information and Form */}
       <div className="mt-5 md:mt-8 lg:mt-10 flex flex-col md:flex-row gap-6">
         {/* Left Side: Contact Info */}
-        <div className="md:w-[40%] xl:w-[30%] h-fit min-h-[280px] lg:min-h-[320px] bg-secondary rounded-lg p-5 xl:p-8 text-white font-primaryTest tracking-wider flex flex-col gap-3 md:gap-6">
+        <div className="md:w-[40%] xl:w-[30%] h-fit md:min-h-[280px] lg:min-h-[320px] bg-secondary rounded-lg p-5 xl:p-8 text-white font-primaryTest tracking-wider flex flex-col gap-3 md:gap-6">
           {isLoading ? (
             <div className="flex flex-1 items-center justify-center">
               <ImSpinner3 className="text-white text-3xl animate-spin" />
@@ -170,16 +170,18 @@ console.log(contactInfo);
               </div>
               <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
                 <PhoneSvg />
-                <a href={`tel:${contactInfo?.mobile}`}>
-                  {contactInfo?.mobile}
-                </a>
+                <a href={`tel:${contactInfo?.mobile}`}>{contactInfo?.mobile}</a>
               </div>
               <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
                 <TelephoneSvg />
-                <a href={`tel:${contactInfo?.teliphone}`}>{contactInfo?.teliphone}</a>
+                <a href={`tel:${contactInfo?.teliphone}`}>
+                  {contactInfo?.teliphone}
+                </a>
               </div>
               <div className="flex gap-3 md:gap-5 text-sm md:text-base items-center">
-                <EmailSvg />
+                <div className='pt-1'>
+                  <EmailSvg />
+                </div>
                 <a href={`mailto:${contactInfo?.email}`}>
                   {contactInfo?.email}
                 </a>
