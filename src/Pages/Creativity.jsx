@@ -17,7 +17,7 @@ const Creativity = () => {
     queryFn: async () => {
       const { data } = await axiosPublic('/creativity');
       const updatedCreativity = data.data.sort(
-        (a, b) => a.serial_number - b.serial_number
+        (a, b) => a.position - b.position
       );
       return updatedCreativity;
     },
