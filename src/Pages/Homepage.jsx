@@ -6,7 +6,7 @@ import LoadingPage from '../components/LoadingPage';
 
 const fetchAboutData = async (axiosPublic) => {
   const response = await axiosPublic.get('/about',);
-  return [response?.data?.data[0]]; // Return the first item wrapped in an array
+  return [response?.data]; // Return the first item wrapped in an array
 };
 
 const Homepage = () => {
@@ -21,8 +21,7 @@ const Homepage = () => {
   } = useQuery({
     queryKey: ['about'], // Unique key for the query
     queryFn: () => fetchAboutData(axiosPublic), // Fetcher function
-    staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
-    retry: 1, // Retry once on failure
+
   });
 
 

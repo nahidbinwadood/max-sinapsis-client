@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        logoFont:['Logo'],
+        logoFont: ['Logo'],
         primaryRegular: ['Regular'],
         primaryMedium: ['Medium'],
         primaryBold: ['Bold'],

@@ -12,7 +12,10 @@ const ProjectsSection = ({ project }) => {
     description_EESS,
   } = project;
 
- 
+  // Strip the <p> tags and keep only the inner text
+  const cleanDescription = (description) =>
+    description.replace(/<[^>]+>/g, '');
+
   return (
     <div className="flex gap-4 md:gap-5">
       <div className="size-2 sm:size-3 lg:size-[14px] bg-secondary rounded-full flex-shrink-0" />
@@ -24,7 +27,9 @@ const ProjectsSection = ({ project }) => {
           </span>
         </h3>
         <p className="text-secondary font-primaryTest tracking-wider text-sm md:text-base">
-        {!isSpanish ? description_EESS : description_IINN}
+          {!isSpanish
+            ? cleanDescription(description_EESS)
+            : cleanDescription(description_IINN)}
         </p>
       </div>
     </div>
