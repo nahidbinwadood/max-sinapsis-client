@@ -154,7 +154,7 @@ const Portfolio = () => {
                     setShowTab(false);
                   }}
                   className={`lowercase py-1 ${
-                    activeTab?._id === tab?._id
+                    activeTab?.id === tab?.id
                       ? 'text-black font-primaryBold'
                       : 'text-primary font-primaryTest'
                   }`}
