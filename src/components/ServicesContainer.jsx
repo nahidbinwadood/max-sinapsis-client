@@ -16,7 +16,8 @@ const ServicesContainer = ({ service }) => {
       <div>
         {/* Section Title */}
         <SectionTitle
-          title={isSpanish ? service?.title_eess : service?.title_iinn}
+          title={service?.title_iinn}
+          spanish={service?.title_eess}
         />
 
         {/* Description */}

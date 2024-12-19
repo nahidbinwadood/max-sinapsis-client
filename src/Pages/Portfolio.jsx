@@ -6,12 +6,6 @@ import PortfolioItem from '../components/PortfolioItem';
 import { useQuery } from '@tanstack/react-query';
 import LoadingPage from '../components/LoadingPage';
 
-const fetchPortfolio = async (axiosPublic) => {
-  const { data } = await axiosPublic('/get-all-portfolio');
-  const updatedPortfolio = data?.data.sort((a, b) => a.position - b.position);
-  return updatedPortfolio;
-};
-
 const Portfolio = () => {
   const { isSpanish } = useAuth();
   const axiosPublic = useAxiosPublic();
@@ -27,11 +21,14 @@ const Portfolio = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ['portfolio'],
-    queryFn: () => fetchPortfolio(axiosPublic),
-    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
-    cacheTime: 1000 * 60 * 30, // Keep cache for 30 minutes
-    retry: 1, // Retry once if the query fails
+    queryKey: ['allPortfolio'],
+    queryFn: async () => {
+      const { data } = await axiosPublic('/get-all-portfolio');
+      const updatedPortfolios = data.data.sort(
+        (a, b) => a.position - b.position
+      );
+      return updatedPortfolios;
+    },
   });
 
   // Set the active tab to the first portfolio item when data is fetched

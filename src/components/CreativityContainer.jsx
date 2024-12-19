@@ -28,7 +28,7 @@ const CreativityContainer = ({ creativity }) => {
           {/* title */}
           <div className="flex items-center gap-3">
             <div className="bg-secondary size-2 sm:size-3 lg:size-[14px] rounded-full" />
-            <h2 className="text-[#666633] font-primaryBold md:text-xl lowercase -mt-1 tracking-wide">
+            <h2 className="tracking-wide text-secondary font-primaryBold text-lg md:text-xl lowercase -mt-1">
               {isSpanish ? creativity?.title_IINN : creativity?.title_EESS}
             </h2>
           </div>
