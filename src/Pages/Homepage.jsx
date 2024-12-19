@@ -4,11 +4,6 @@ import useAxiosPublic from '../Hooks/useAxiosPublic';
 import AboutContainer from '../components/AboutContainer';
 import LoadingPage from '../components/LoadingPage';
 
-const fetchAboutData = async (axiosPublic) => {
-  const { data } = await axiosPublic.get('/about');
-  return [data?.data[0]]; // Return the first item wrapped in an array
-};
-
 const Homepage = () => {
   const axiosPublic = useAxiosPublic();
 
@@ -19,8 +14,11 @@ const Homepage = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ['about'], // Unique key for the query
-    queryFn: () => fetchAboutData(axiosPublic), // Fetcher function
+    queryKey: ['aboutData'], // Unique key for the query
+    queryFn: async () => {
+      const { data } = await axiosPublic.get('/about');
+      return data?.data;
+    },
   });
 
   console.log(aboutData);

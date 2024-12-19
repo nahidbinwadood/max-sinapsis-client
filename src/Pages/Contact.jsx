@@ -84,12 +84,6 @@ const Contact = () => {
   const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(false);
 
-  // Fetch contact information
-  const fetchInfo = async () => {
-    const { data } = await axiosPublic('/getcontact-address');
-    return data?.data[0];
-  };
-
   const {
     data: contactInfo,
     isLoading,
@@ -97,10 +91,10 @@ const Contact = () => {
     error,
   } = useQuery({
     queryKey: ['contactInfo'],
-    queryFn: fetchInfo,
-    staleTime: Infinity,
-    cacheTime: Infinity,
-    retry: 1,
+    queryFn: async () => {
+      const { data } = await axiosPublic('/getcontact-address');
+      return data?.data[0];
+    },
   });
 
   const locationArray = contactInfo?.address?.split('\\n') || [];

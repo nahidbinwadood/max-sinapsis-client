@@ -4,13 +4,6 @@ import Title from '../components/Title';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import LoadingPage from '../components/LoadingPage';
 
-const fetchProjects = async ({ queryKey }) => {
-  const axiosPublic = queryKey[1]; // Extract axios instance from queryKey
-  const { data } = await axiosPublic('/projects-list');
-  return data?.data.sort(
-    (a, b) => parseInt(a.position) - parseInt(b.position)
-  );
-};
 
 const Projects = () => {
   const axiosPublic = useAxiosPublic();
@@ -23,12 +16,14 @@ const Projects = () => {
     error,
   } = useQuery({
     queryKey: ['projects', axiosPublic], // Pass query key as an array
-    queryFn: fetchProjects, // Fetcher function
-    staleTime: 1000 * 60 * 5, // 5 minutes
-    cacheTime: 1000 * 60 * 30, // Cache for 30 minutes
-    retry: 1, // Retry once on failure
+    queryFn: async () => {
+      const { data } = await axiosPublic('/projects-list');
+      return data?.data.sort(
+        (a, b) => parseInt(a.position) - parseInt(b.position)
+      );
+    },
   });
-console.log(projects);
+  console.log(projects);
   if (isLoading) {
     return <LoadingPage />;
   }

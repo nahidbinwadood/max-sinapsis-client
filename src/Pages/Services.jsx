@@ -22,9 +22,6 @@ const Services = () => {
       );
       return updatedServices;
     },
-    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
-    cacheTime: 1000 * 60 * 30, // Retain cache for 30 minutes
-    retry: 1, // Retry once on failure
   });
 
   if (isLoading) {
