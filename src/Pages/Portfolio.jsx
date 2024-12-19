@@ -160,7 +160,7 @@ const Portfolio = () => {
                   }`}
                   key={index}
                 >
-                  {isSpanish ? tab?.title_EESS : tab?.title_IINN}
+                  {!isSpanish ? tab?.title_EESS : tab?.title_IINN}
                 </button>
               ))}
             </div>
